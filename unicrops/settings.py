@@ -124,7 +124,7 @@ WSGI_APPLICATION = 'unicrops.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-"""
+
 
 DATABASES = {
     'default': {
@@ -133,10 +133,11 @@ DATABASES = {
     }
 }
 
-"""
 
 """
 POSTGRES DATABASE CONFIGURATION
+
+"""
 
 """
 
@@ -150,6 +151,10 @@ DATABASES = {
         'PORT': config('DB_PORT', default='5432'),
     }
 }
+
+
+"""
+
 
 
 """
