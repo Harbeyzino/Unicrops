@@ -1,1 +1,3 @@
-web: gunicorn unicrops.wsgi:application
+
+web: gunicorn app:app
+
