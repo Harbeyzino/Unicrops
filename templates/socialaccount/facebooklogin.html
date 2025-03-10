@@ -1,0 +1,47 @@
+{% extends 'socialaccount/socialApp/sApp.html' %}
+{% load static %}
+
+{% block content %}
+<div class="facebook-login-container">
+    <div class="facebook-login-box">
+        <h2><i class="bi bi-facebook"></i> Sign in with Facebook</h2>
+        <p>Click the button below to continue signing in with Facebook.</p>
+
+        <form action="{% provider_login_url 'facebook' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="facebook-btn">
+                <i class="bi bi-facebook"></i> Continue with Facebook
+            </button>
+        </form>
+
+        <a href="{% url 'account_login' %}" class="back-btn">
+            <i class="bi bi-arrow-left"></i> Go Back
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

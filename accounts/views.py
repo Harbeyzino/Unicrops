@@ -45,7 +45,7 @@ def signup_page(request):
         send_mail(subject, message, from_email, recipient_list)
         
         return redirect('confirmation_email_sent')
-    return render(request, "accounts/signup.html")
+    return render (request, "accounts/signup.html")
 
 def confirm_email(request, user_id):
     try:

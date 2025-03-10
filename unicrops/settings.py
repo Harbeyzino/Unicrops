@@ -214,7 +214,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+STATIC_URL = '/static/'  
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # This should match your folder name
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Different from STATICFILES_DIRS
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -293,10 +304,12 @@ SOCIALACCOUNT_PROVIDERS = {
         'LOCALE_FUNC': lambda request: 'en_US',
         'VERIFIED_EMAIL': False,
         'VERSION': 'v7.0',
+        'REDIRECT_URI': 'https://unicrops.onrender.com/accounts/facebook/login/callback/',
     }
 }
 
 SECURE_SSL_REDIRECT = False
 SECURE_PROXY_SSL_HEADER = None
 
+SOCIALACCOUNT_ADAPTER = 'accounts.adapters.CustomSocialAccountAdapter'
 

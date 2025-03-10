@@ -1,25 +1,44 @@
-{% extends "base.html" %}
+{% extends 'accounts/base/secApp.html' %}
 {% load socialaccount %}
-
-{% block title %}Login - Unicrops{% endblock %}
+{% load static %}
 
 {% block content %}
-    <h2>Login Page</h2>
-    <form method="post">
-        {% csrf_token %}
-        <div>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
+
+    <div class="bg-img">
+      <div class="content">
+        <header>Sign In</header>
+        <form action="{% url 'account_login' %}" method="POST">
+            {% csrf_token %}
+          <div class="field">
+            <span class="fa fa-user"></span>
+            <input type="text" required placeholder="Username" id="username" name="username">
+          </div>
+          <div class="field space">
+            <span class="fa fa-lock"></span>
+            <input type="password" class="pass-key" required placeholder="Password" id="password" name="password">
+            <span class="show">SHOW</span>
+          </div>
+          <div class="pass">
+            <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
+          </div>
+          <div class="field">
+            <input type="submit" value="SIGN IN">
+          </div>
+        </form>
+
+        <div class="login">Or login with</div>
+        <div class="links">
+          <a href="{% provider_login_url 'facebook' %}" class="facebook">
+            <i class="bi bi-facebook"></i> Facebook
+          </a>
+          <a href="{% provider_login_url 'google' %}" class="google">
+            <i class="bi bi-google"></i> Google
+          </a>
         </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+
+        <div class="signup">Don't have an account?
+          <a href="{% url 'signup' %}">Signup Now</a>
         </div>
-        <button type="submit">Login</button>
-    </form>
-    <p><a href="{% url 'account_reset_password' %}">Forgot your password?</a></p>
-    <p>If you have not created an account yet, then please <a href="{% url 'signup' %}">sign up</a> first.</p>
-    <h3>Or use a third-party</h3>
-    <a href="{% provider_login_url 'google' %}">Google</a>
-    <a href="{% provider_login_url 'facebook' %}">Facebook</a>
+      </div>
+    </div>
 {% endblock %}
