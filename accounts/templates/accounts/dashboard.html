@@ -1,9 +1,18 @@
-{% extends 'base.html' %}
-
-{% block title %}Dashboard - {{ user.username }}{% endblock %}
+<!-- {% extends 'base/base.html' %} -->
 
 {% block content %}
-    <h2>Welcome, {{ user.username }}</h2>
-    <p>This is your dashboard.</p>
-    <!-- Add more user-specific content here -->
+<div class="dashboard-container">
+    <h1>Welcome to Your Dashboard</h1>
+    <nav class="dashboard-nav">
+        <ul>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'settings' %}">Settings</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+    </nav>
+    <div class="dashboard-content">
+        <p>Here you can manage your account, view your activity, and customize your preferences.</p>
+        <!-- Add more dashboard widgets or sections here -->
+    </div>
+</div>
 {% endblock %}

@@ -7,6 +7,8 @@ from django.conf import settings
 from django.urls import reverse
 from django.contrib import messages
 from django.views.generic import TemplateView
+from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
+from allauth.core.exceptions import ImmediateHttpResponse  # Update this import
 
 """
 User Authentication system
@@ -17,25 +19,42 @@ def login_page(request):
         return redirect('user_dashboard')
     
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
+
         user = authenticate(username=username, password=password)
+
         if user is not None:
             login(request, user)
+            messages.success(request, "Login successful! Welcome back.")
             return redirect('user_dashboard')
         else:
-            return render(request, 'accounts/login.html', {'error': 'Invalid username or password'})
+            messages.error(request, "Invalid username or password. Please try again.")
+
     return render(request, 'accounts/login.html')
 
 
-# Sign-up view: handles user registration without using a form and stores data
 def signup_page(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        email = request.POST['email']
+        username = request.POST.get('username', '').strip()
+        password = request.POST.get('password', '').strip()
+        email = request.POST.get('email', '').strip()
+
+        # Check if username already exists
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists. Try another one.")
+
+        # Check if email already exists
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email is already registered. Try logging in.")
+
+        # If there are errors, redirect back to signup page
+        if messages.get_messages(request):
+            return redirect('account_signup')
+
+        # Create new user
         user = User.objects.create_user(username=username, password=password, email=email)
-        
+
         # Send confirmation email
         subject = 'Welcome to Unicrops'
         confirmation_link = request.build_absolute_uri(reverse('confirm_email', args=[user.id]))
@@ -43,9 +62,12 @@ def signup_page(request):
         from_email = settings.DEFAULT_FROM_EMAIL
         recipient_list = [email]
         send_mail(subject, message, from_email, recipient_list)
-        
+
+        messages.success(request, "Registration successful! Check your email to confirm your account.")
         return redirect('confirmation_email_sent')
-    return render (request, "accounts/signup.html")
+
+    return render(request, "accounts/signup.html")
+
 
 def confirm_email(request, user_id):
     try:
@@ -66,12 +88,14 @@ def dashboard(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 class PrivacyPolicyView(TemplateView):
     template_name = 'accounts/privacy_policy.html'
 
+def profile(request):
+    return render(request, 'accounts/profile.html')
 
-
-
+def settings(request):
+    return render(request, 'accounts/settings.html')
 

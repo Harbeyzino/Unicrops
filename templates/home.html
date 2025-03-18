@@ -1,8 +1,648 @@
-{% extends "base.html" %}
-
-{% block title %}Home{% endblock %}
+{% extends "base/base.html" %}
+{% load static %}
 
 {% block content %}
-<h1>Welcome to Unicrops</h1>
-<p>This is the home page.</p>
+    <!-- ***** Main Banner Area Start ***** -->
+    <section class="section main-banner" id="top" data-section="section1">
+        <video autoplay muted loop id="bg-video">
+            {% load static %}
+            <source src="{% static 'assets\images\bg_vid1.mp4' %}" type="video/mp4" />
+        </video>
+
+        <div class="video-overlay header-text">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="caption">
+                <h6>Hello Business Owners</h6>
+                <h2>Bring Your Business for Growth</h2>
+                <p>This is a comprehensive business solution template designed to help you streamline your operations and enhance productivity. Our layout is built with the latest Bootstrap framework, ensuring a responsive and modern design. The video background showcases a group of professionals working together, symbolizing collaboration and success in the business world.</p>
+                <div class="main-button-red">
+                    <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+                </div>
+            </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Main Banner Area End ***** -->
+    <section class="services">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="owl-service-item owl-carousel">
+              
+                <div class="item">
+                  <div class="icon">
+                    <img src="{% static 'assets/images/service-icon-01.png' %}" alt="">
+                  </div>
+                  <div class="down-content">
+                    <h4>Business Solutions</h4>
+                    <p>Our services provide comprehensive solutions to enhance your business operations and drive growth.</p>
+                  </div>
+                </div>
+                
+                <div class="item">
+                  <div class="icon">
+                    <img src="{% static 'assets/images/service-icon-02.png' %}" alt="">
+                  </div>
+                  <div class="down-content">
+                    <h4>Expert Consultants</h4>
+                    <p>Our team of expert consultants offers the best advice and strategies to grow your business.</p>
+                  </div>
+                </div>
+                
+                <div class="item">
+                  <div class="icon">
+                    <img src="{% static 'assets/images/service-icon-03.png' %}" alt="">
+                  </div>
+                  <div class="down-content">
+                    <h4>Innovative Solutions</h4>
+                    <p>We offer innovative solutions tailored to your business needs, ensuring you stay ahead of the competition.</p>
+                  </div>
+                </div>
+                
+                <div class="item">
+                  <div class="icon">
+                    <img src="{% static 'assets/images/service-icon-02.png' %}" alt="">
+                  </div>
+                  <div class="down-content">
+                    <h4>Online Collaboration</h4>
+                    <p>Our platform facilitates seamless online collaboration, making it easy for your team to work together effectively.</p>
+                  </div>
+                </div>
+                
+                <div class="item">
+                  <div class="icon">
+                    <img src="{% static 'assets/images/service-icon-03.png' %}" alt="">
+                  </div>
+                  <div class="down-content">
+                    <h4>Networking Opportunities</h4>
+                    <p>We provide ample networking opportunities to help you connect with other business professionals.</p>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+
+
+    <section class="upcoming-meetings" id="meetings">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
+              <h2>Our Service</h2>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="categories">
+              <h4>What we offer</h4>
+              <ul>
+                <li><a href="#">Business Branding & Consultancy</a></li>
+                <li><a href="#">Marketing</a></li>
+                <li><a href="#">Finance</a></li>
+                <li><a href="#">Human Resources</a></li>
+                <li><a href="#">Technology</a></li>
+              </ul>
+              <div class="main-button-red">
+                <a href=""></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="meeting-item">
+                  <div class="thumb">
+                    <div class="price">
+                      <!-- <span>$22.00</span> -->
+                    </div>
+                    <a href="#"><img src="{% static 'assets/images/service03.jpg' %}" alt="New Lecturer Meeting"></a>
+                  </div>
+                  <div class="down-content">
+                    <div class="date">
+                      <!-- <h6>Nov <span>10</span></h6> -->
+                    </div>
+                    <a href="#"><h4>New Business Strategy Meeting</h4></a>
+                    <p>Discuss the latest trends and strategies<br> in business management.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="meeting-item">
+                  <div class="thumb">
+                    <div class="price">
+                      <!-- <span>$36.00</span> -->
+                    </div>
+                    <a href="#"><img src="{% static 'assets/images/service03.jpg' %}" alt="Online Teaching"></a>
+                  </div>
+                  <div class="down-content">
+                    <div class="date">
+                      <!-- <h6>Nov <span>24</span></h6> -->
+                    </div>
+                    <a href="#"><h4>Financial Planning Conference</h4></a>
+                    <p>Get insights into effective financial planning for your business.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="meeting-item">
+                  <div class="thumb">
+                    <div class="price">
+                      <!-- <span>$14.00</span> -->
+                    </div>
+                    <a href="#"><img src="{% static 'assets/images/service03.jpg' %}" alt="Higher Education"></a>
+                  </div>
+                  <div class="down-content">
+                    <div class="date">
+                      <!-- <h6>Nov <span>26</span></h6> -->
+                    </div>
+                    <a href="#"><h4>HR Management Meetup</h4></a>
+                    <p>Explore the best practices in human resource management.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="meeting-item">
+                  <div class="thumb">
+                    <div class="price">
+                      <!-- <span>$48.00</span> -->
+                    </div>
+                    <a href="#"><img src="{% static 'assets/images/service03.jpg' %}" alt="Student Training"></a>
+                  </div>
+                  <div class="down-content">
+                    <div class="date">
+                      <!-- <h6>Nov <span>30</span></h6> -->
+                    </div>
+                    <a href="#"><h4>Financial Planning Conference</h4></a>
+                    <p>Morbi in libero blandit lectus<br>cursus ullamcorper.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="apply-now" id="apply">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 align-self-center">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="item">
+                  <h3>APPLY FOR BUSINESS CONSULTATION</h3>
+                  <p>Get expert advice and strategies to grow your business. Our team of consultants is here to help you succeed.</p>
+                  <div class="main-button-red">
+                    <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+                </div>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="item">
+                  <h3>APPLY FOR BUSINESS CONSULTATION</h3>
+                  <p>Our consultation services are designed to provide you with the best strategies and solutions for your business.</p>
+                  <div class="main-button-yellow">
+                    <div class="scroll-to-section"><a href="#contact">Join Us Now!</a></div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="accordions is-first-expanded">
+              <article class="accordion">
+                  <div class="accordion-head">
+                      <span>About Our Business Solutions</span>
+                      <span class="icon">
+                          <i class="icon fa fa-chevron-right"></i>
+                      </span>
+                  </div>
+                  <div class="accordion-body">
+                      <div class="content">
+                          <p>We offer a range of business solutions designed to help you streamline your operations and enhance productivity. Our team of experts is here to provide you with the best advice and strategies to grow your business <a rel="nofollow" href="https://www.toocss.com/" target="_blank">Too CSS website</a>. If you need a working contact form script, please visit <a href="https://templatemo.com/contact" target="_parent">our contact page</a> for more info.</p>
+                      </div>
+                  </div>
+              </article>
+              <article class="accordion">
+                  <div class="accordion-head">
+                      <span>Innovative Business Strategies</span>
+                      <span class="icon">
+                          <i class="icon fa fa-chevron-right"></i>
+                      </span>
+                  </div>
+                  <div class="accordion-body">
+                      <div class="content">
+                          <p>Our innovative business strategies are designed to help you stay ahead of the competition. We provide tailored solutions to meet your specific business needs.</p>
+                      </div>
+                  </div>
+              </article>
+              <article class="accordion">
+                  <div class="accordion-head">
+                      <span>Join Our Business Network</span>
+                      <span class="icon">
+                          <i class="icon fa fa-chevron-right"></i>
+                      </span>
+                  </div>
+                  <div class="accordion-body">
+                      <div class="content">
+                          <p>Join our business network and connect with other professionals. We provide ample networking opportunities to help you grow your business..</p>
+                      </div>
+                  </div>
+              </article>
+              <article class="accordion last-accordion">
+                  <div class="accordion-head">
+                      <span>Share Your Success Stories</span>
+                      <span class="icon">
+                          <i class="icon fa fa-chevron-right"></i>
+                      </span>
+                  </div>
+                  <div class="accordion-body">
+                      <div class="content">
+                          <p>Share your success stories with us and inspire others. We love to hear about how our solutions have helped your business grow.</p>
+                      </div>
+                  </div>
+              </article>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="our-courses" id="courses">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="section-heading">
+              <h2>Our Popular Business Courses</h2>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="owl-courses-item owl-carousel">
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="Course One">
+                <div class="down-content">
+                  <h4>Business Management</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$160</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="Course Two">
+                <div class="down-content">
+                  <h4>Marketing Strategies</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$180</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Financial Planning</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$140</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Leadership Skills</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$120</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Project Management</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$250</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Business Analytics</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$270</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Entrepreneurship</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$340</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Lorem, ipsum.</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$360</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Lorem, ipsum dolor.</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$400</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Lorem, ipsum dolor.</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$430</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Lorem ipsum dolor sit.</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$480</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <img src="{% static 'assets/images/service03.jpg' %}" alt="">
+                <div class="down-content">
+                  <h4>Lorem, ipsum dolor.</h4>
+                  <div class="info">
+                    <div class="row">
+                      <div class="col-8">
+                        <ul>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                          <li><i class="fa fa-star"></i></li>
+                        </ul>
+                      </div>
+                      <div class="col-4">
+                         <span>$560</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="our-facts">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-12">
+                <h2>A Few Facts About Our Business</h2>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="count-area-content percentage">
+                      <div class="count-digit">94%</div>
+                      <div class="count-title">Client Satisfaction</div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="count-area-content">
+                      <div class="count-digit">126</div>
+                      <div class="count-title">Projects Completed</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="count-area-content new-clients">
+                      <div class="count-digit">2345</div>
+                      <div class="count-title">New Clients</div>
+                    </div>
+                  </div> 
+                  <div class="col-12">
+                    <div class="count-area-content">
+                      <div class="count-digit">32</div>
+                      <div class="count-title">Awards Won</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <div class="col-lg-6 align-self-center">
+            <div class="video">
+              <a href="" target="_blank"><img src="{% static 'assets/images/play-icon.png' %}" alt=""></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <section class="contact-us" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 align-self-center">
+            <div class="row">
+              <div class="col-lg-12">
+                <form id="contact" action="" method="post">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <h2>Let's get in touch</h2>
+                    </div>
+                    <div class="col-lg-4">
+                      <fieldset>
+                        <input name="name" type="text" id="name" placeholder="YOURNAME...*" required="">
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-4">
+                      <fieldset>
+                      <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="YOUR EMAIL..." required="">
+                    </fieldset>
+                    </div>
+                    <div class="col-lg-4">
+                      <fieldset>
+                        <input name="subject" type="text" id="subject" placeholder="SUBJECT...*" required="">
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <textarea name="message" type="text" class="form-control" id="message" placeholder="YOUR MESSAGE..." required=""></textarea>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="button">SEND MESSAGE NOW</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+    </section>
 {% endblock %}

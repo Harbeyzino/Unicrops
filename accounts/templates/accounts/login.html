@@ -3,9 +3,18 @@
 {% load static %}
 
 {% block content %}
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <div class="bg-img">
       <div class="content">
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert {% if message.tags == 'error' %}alert-danger{% else %}alert-success{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+
         <header>Sign In</header>
         <form action="{% url 'account_login' %}" method="POST">
             {% csrf_token %}
@@ -33,7 +42,7 @@
           </a>
           <a href="{% provider_login_url 'google' %}" class="google">
             <i class="bi bi-google"></i> Google
-          </a>
+          </a>             
         </div>
 
         <div class="signup">Don't have an account?
