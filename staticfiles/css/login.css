@@ -157,7 +157,6 @@ i span{
   text-decoration: underline;
 }
 
-
 .links {
     display: flex;
     justify-content: center;
@@ -197,4 +196,49 @@ i span{
     background-color: #DB4437;
     color: white;
   }
-  
+
+@media (max-width: 768px) {
+  .content {
+    width: 90%;
+    padding: 40px 20px;
+  }
+  .content header {
+    font-size: 28px;
+  }
+  .field input {
+    font-size: 14px;
+  }
+  .field input[type="submit"] {
+    font-size: 16px;
+  }
+  .links a {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+  .links a i {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    width: 95%;
+    padding: 30px 15px;
+  }
+  .content header {
+    font-size: 24px;
+  }
+  .field input {
+    font-size: 12px;
+  }
+  .field input[type="submit"] {
+    font-size: 14px;
+  }
+  .links a {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+  .links a i {
+    font-size: 16px;
+  }
+}

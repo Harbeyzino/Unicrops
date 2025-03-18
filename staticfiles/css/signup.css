@@ -156,3 +156,35 @@ i span{
 .signup a:hover{
   text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+  .content {
+    width: 90%;
+    padding: 40px 20px;
+  }
+  .content header {
+    font-size: 28px;
+  }
+  .field input {
+    font-size: 14px;
+  }
+  .field input[type="submit"] {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    width: 95%;
+    padding: 30px 15px;
+  }
+  .content header {
+    font-size: 24px;
+  }
+  .field input {
+    font-size: 12px;
+  }
+  .field input[type="submit"] {
+    font-size: 14px;
+  }
+}
