@@ -1868,17 +1868,16 @@ responsive
     background-color: #ac1729;
     padding: 8px;
     border-radius: 50px;
-    color: red;
-    cursor: pointer;
     display: inline-block;
-    margin-top: 30px;
-    margin-right: -70px;
+    /* margin-top: 30px; */
+    margin-right: -90px;
   }
 
   .header-area .main-nav .nav li {
     padding-left: 7px;
     padding-right: 7px;
     position: relative;
+
   }
 
   .logo {
@@ -1887,5 +1886,10 @@ responsive
     position: absolute;
     right: 50%;
     top: 0;
+  }
+
+  .sign-btn a {
+    color: #fff;
+    font-size: 15px;
   }
 }
