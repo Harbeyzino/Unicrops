@@ -1,25 +1,37 @@
-from allauth.account.signals import user_signed_up
 from django.dispatch import receiver
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import render_to_string
-from django.conf import settings
-from django.urls import reverse
+from django.db.models.signals import post_save, pre_save
+from allauth.account.models import EmailAddress
+from django.contrib.auth.models import User
+from .models import Profile
 
-@receiver(user_signed_up)
-def send_welcome_email(request, user, **kwargs):
-    subject = 'Welcome to Unicrops!'
-    from_email = settings.DEFAULT_FROM_EMAIL
-    recipient_list = [user.email]
-    context = {
-        'user': user,
-        'confirm_url': request.build_absolute_uri(reverse('confirm_email', args=[user.id]))
-    }
-    text_content = 'Thank you for signing up with Unicrops. Please confirm your email address to complete your registration.'
-    html_content = render_to_string('email/welcome_email.html', context)
-    msg = EmailMultiAlternatives(subject, text_content, from_email, recipient_list)
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
+@receiver(post_save, sender=User)       
+def user_postsave(sender, instance, created, **kwargs):
+    user = instance
     
-    # Set session flag for redirection only for Google sign-up
-    if user.socialaccount_set.filter(provider='google').exists():
-        request.session['confirmation_email_sent'] = True
+    # add profile if user is created
+    if created:
+        Profile.objects.create(
+            user = user,
+        )
+    else:
+        # update allauth emailaddress if exists 
+        try:
+            email_address = EmailAddress.objects.get_primary(user)
+            if email_address.email != user.email:
+                email_address.email = user.email
+                email_address.verified = False
+                email_address.save()
+        except:
+            # if allauth emailaddress doesn't exist create one
+            EmailAddress.objects.create(
+                user = user,
+                email = user.email, 
+                primary = True,
+                verified = False
+            )
+        
+        
+@receiver(pre_save, sender=User)
+def user_presave(sender, instance, **kwargs):
+    if instance.username:
+        instance.username = instance.username.lower()

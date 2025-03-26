@@ -23,18 +23,9 @@ from .views import home_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),  # Ensure this line is correct
-    path('api/products/', include('products.urls')),
-    path('api/payments/', include('payments.urls')),
-    path('api/appointments/', include('appointments.urls')),
-    path('api/notifications/', include('notifications.urls')),
-    path('api/support/', include('support.urls')),
-    path('api/dashboard/', include('admin_dashboard.urls')),
-    path('api/blog/', include('blog.urls')),
-    path('api/contact/', include('contact.urls')),
     path('', home_page, name='home'),
+    path('accounts/', include('accounts.urls')),  # Include accounts app URLs
     path('accounts/', include('allauth.urls')),
-    path('', include('accounts.urls')),
 ]
 
 # Serve media & static files in development

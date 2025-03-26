@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'django_redis',
 
     # Custom modular apps
+
     'accounts',
     'products',
     'payments',
@@ -85,7 +86,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 2
 
-LOGIN_REDIRECT_URL = 'user_dashboard'
+LOGIN_REDIRECT_URL = '/'  # Redirect to the home page after login  # Redirect to the user dashboard after login
 LOGOUT_REDIRECT_URL = 'home'
 
 MIDDLEWARE = [
@@ -117,6 +118,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'accounts.context_processors.user_profile',
             ],
         },
     },
@@ -230,6 +232,9 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Different from STATICFILES_DIRS
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -330,3 +335,6 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 SOCIALACCOUNT_ADAPTER = 'accounts.adapters.SocialAccountAdapter'
 
 ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'
+
+
+
