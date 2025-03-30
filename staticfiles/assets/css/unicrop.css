@@ -877,7 +877,7 @@ upcoming meetings
 */
 
 section.upcoming-meetings {
-  background-image: url(../images/service-background03.jpg);
+  background-image: url(../images/service-background02.jpg);
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1096,7 +1096,7 @@ courses
 */
 
 section.our-courses {
-  background-image: url(../images/service-background03.jpg);
+  background-image: url(../images/service-background02.jpg);
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1314,7 +1314,7 @@ contact us
 */
 
 section.contact-us {
-  background-image: url(../images/service-background03.jpg);
+  background-image: url(../images/service-background02.jpg);
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -1899,7 +1899,7 @@ responsive
   object-fit: cover; 
   cursor: pointer; 
   transition: transform 0.2s ease-in-out; 
- position: absolute;
+  position: absolute;
   left: 100%;
   top: 240%;
   outline: 2px solid #ac1729;

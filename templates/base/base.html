@@ -62,17 +62,7 @@
           <div class="col-12">
                <!-- User Authentication -->
               {% if user.is_authenticated %}
-              <li class="nav-item dropdown">
-                  <a href="#" class="nav-link d-flex align-items-center" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img class="avatar-img" 
-                           src="{% if profile and profile.avatar %}{{ profile.avatar }}{% else %}{% static 'img/avatar.jpg' %}{% endif %}" 
-                           alt="User Avatar"/>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                      <li><a class="dropdown-item" href="{% url 'user_dashboard' %}">Dashboard</a></li>
-                      <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                  </ul>
-              </li>
+              <li class="sign-btn"><a href="{% url 'login' %}">Book now</a></li>
               {% else %}
               <li class="sign-btn"><a href="{% url 'login' %}">Sign In</a></li>
               {% endif %}
@@ -129,12 +119,9 @@
                         {% endif %}
                       </ul>
                     <!-- Mobile Menu Trigger -->
-                    {% if not user.is_authenticated %}
                     <a class="menu-trigger">
                         <span>Menu</span>
                     </a>
-                    {% endif %}
-
                     <!-- ***** Menu End ***** -->
                 </nav>
             </div>

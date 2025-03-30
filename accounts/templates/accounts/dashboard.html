@@ -1,14 +1,22 @@
-<!-- {% extends 'base/base.html' %} -->
+{% extends 'base/base.html' %}
+{% load static %}
+
 
 {% block content %}
 <div class="dashboard-container">
     <h1>Welcome to Your Dashboard</h1>
     <nav class="dashboard-nav">
-        <ul>
-            <li><a href="{% url 'profile' %}">Profile</a></li>
-            <li><a href="{% url 'settings' %}">Settings</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-        </ul>
+        <li class="nav-item dropdown">
+            <a href="#" class="nav-link d-flex align-items-center" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="avatar-img" 
+                     src="{% if profile and profile.avatar %}{{ profile.avatar }}{% else %}{% static 'img/avatar.jpg' %}{% endif %}" 
+                     alt="User Avatar"/>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" href="{% url 'user_dashboard' %}">Dashboard</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </li>
     </nav>
     <div class="dashboard-content">
         <p>Here you can manage your account, view your activity, and customize your preferences.</p>
