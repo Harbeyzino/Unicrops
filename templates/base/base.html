@@ -115,6 +115,8 @@
                         <div class="sign-tab">
                           <li class="sign-btn-full"><a href="{% url 'login' %}">Sign In</a></li>
                           <li class="sign-btn-full"><a href="{% url 'signup' %}">Sign Up</a></li>
+                          {% else %}
+                          <li class="sign-btn-full"><a href="{% url 'logout' %}">Logout</a></li>
                         </div>
                         {% endif %}
                       </ul>
