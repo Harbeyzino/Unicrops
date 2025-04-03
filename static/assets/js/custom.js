@@ -155,36 +155,40 @@
 	    $(".menu-trigger").on('click', function () {
 	        $(this).toggleClass('active');
 		
-	        if ($('.header-area .main-nav .nav').hasClass('mobile-menu-open')) {
-	            $('.header-area .main-nav .nav').removeClass('mobile-menu-open').slideUp(300);
+	        let navMenu = $('.header-area .main-nav .nav');
+		
+	        if (navMenu.hasClass('mobile-menu-open')) {
+	            navMenu.removeClass('mobile-menu-open').fadeOut(300);
 	        } else {
-	            $('.header-area .main-nav .nav').addClass('mobile-menu-open').css({
+	            navMenu.addClass('mobile-menu-open').css({
 	                "position": "fixed",
 	                "top": "0",
 	                "left": "0",
 	                "width": "100%",
-	                "height": "vh",
+	                "height": "100vh",
 	                "background": "#fff",
 	                "display": "flex",
 	                "flex-direction": "column",
-	                "justify-content": "left",
+	                "justify-content": "flex-start",
 	                "align-items": "center",
 	                "z-index": "9999",
 	                "padding-top": "50px",
-	                "box-shadow": "0px 4px 10px rgba(0, 0, 0, 0.1)"
-	            }).slideDown(300);
+	                "box-shadow": "0px 4px 10px rgba(0, 0, 0, 0.1)",
+	                "overflow-y": "auto", // Allow scrolling inside the menu
+	                "max-height": "90vh" // Prevent blocking the whole screen
+	            }).fadeIn(300);
 	        }
 	    });
 	}
 	
-	// Close menu when clicking outside or on an item
+	// Close menu when clicking outside
 	$(document).on('click', function (event) {
 	    if (!$(event.target).closest('.menu-trigger, .header-area .main-nav .nav').length) {
 	        $('.menu-trigger').removeClass('active');
-	        $('.header-area .main-nav .nav').removeClass('mobile-menu-open').slideUp(300);
+	        $('.header-area .main-nav .nav').removeClass('mobile-menu-open').fadeOut(300);
 	    }
 	});
-	
+
 	
 
 	$(document).ready(function () {
