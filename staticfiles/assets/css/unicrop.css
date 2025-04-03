@@ -1884,12 +1884,30 @@ responsive
    margin-top: -18px;
   }
 
+  .main-nav .nav{
+    margin-top: 70px;
+  }
+
   .avatar-img {
     margin-left: -40px;
     margin-right: -80px;
     margin-bottom: -400px;
     outline: 3px solid #ac1729;
   }
+
+  .sign-btn-full:hover {
+    background-color: #1a1313b9;
+    color: black;
+  }
+  
+  .sign-btn-full{
+    background-color: #ac1729;
+    padding: 0px;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
 }
 
 .avatar-img {
@@ -1917,4 +1935,8 @@ responsive
   left: auto;
   min-width: 150px;
 
+}
+
+.menu-trigger {
+  display: none;
 }

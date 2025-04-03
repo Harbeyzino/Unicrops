@@ -151,32 +151,41 @@
 	
 
 	// Menu Dropdown Toggle
-	if($('.menu-trigger').length){
-		$(".menu-trigger").on('click', function() {	
-			$(this).toggleClass('active');
-			$('.header-area .nav').slideToggle(200);
-		});
+	if ($('.menu-trigger').length) {
+	    $(".menu-trigger").on('click', function () {
+	        $(this).toggleClass('active');
+		
+	        if ($('.header-area .main-nav .nav').hasClass('mobile-menu-open')) {
+	            $('.header-area .main-nav .nav').removeClass('mobile-menu-open').slideUp(300);
+	        } else {
+	            $('.header-area .main-nav .nav').addClass('mobile-menu-open').css({
+	                "position": "fixed",
+	                "top": "0",
+	                "left": "0",
+	                "width": "100%",
+	                "height": "vh",
+	                "background": "#fff",
+	                "display": "flex",
+	                "flex-direction": "column",
+	                "justify-content": "left",
+	                "align-items": "center",
+	                "z-index": "9999",
+	                "padding-top": "50px",
+	                "box-shadow": "0px 4px 10px rgba(0, 0, 0, 0.1)"
+	            }).slideDown(300);
+	        }
+	    });
 	}
-
-
-	// Menu elevator animation
-	$('.scroll-to-section a[href*=\\#]:not([href=\\#])').on('click', function() {
-		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-			var target = $(this.hash);
-			target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-			if (target.length) {
-				var width = $(window).width();
-				if(width < 991) {
-					$('.menu-trigger').removeClass('active');
-					$('.header-area .nav').slideUp(200);	
-				}				
-				$('html,body').animate({
-					scrollTop: (target.offset().top) - 80
-				}, 700);
-				return false;
-			}
-		}
+	
+	// Close menu when clicking outside or on an item
+	$(document).on('click', function (event) {
+	    if (!$(event.target).closest('.menu-trigger, .header-area .main-nav .nav').length) {
+	        $('.menu-trigger').removeClass('active');
+	        $('.header-area .main-nav .nav').removeClass('mobile-menu-open').slideUp(300);
+	    }
 	});
+	
+	
 
 	$(document).ready(function () {
 	    $(document).on("scroll", onScroll);
