@@ -1,29 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
-import os
+from cloudinary.models import CloudinaryField
 
 def user_avatar_upload_path(instance, filename):
-    """Generate a dynamic upload path for user avatars"""
-    return f'avatars/user_{instance.user.id}/{filename}'
+    # Define the upload path for user avatars
+    return f'avatars/{instance.user.username}/{filename}'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=user_avatar_upload_path, null=True, blank=True)
-    displayname = models.CharField(max_length=20, null=True, blank=True)
-    info = models.TextField(null=True, blank=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    profile_picture = CloudinaryField('image', blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    company = models.CharField(max_length=255, blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True, null=True)
+    about = models.TextField(blank=True, null=True)
+    full_name = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return str(self.user)
-
-    @property
-    def name(self):
-        """Returns display name if set, otherwise username"""
-        return self.displayname if self.displayname else self.user.username
-
-    @property
-    def avatar(self):
-        """Returns the profile image URL or a default avatar"""
-        if self.image and self.image.url:
-            return self.image.url
-        return os.path.join(settings.STATIC_URL, 'img/avatar.png')
+        return f"{self.user.username}'s Profile"

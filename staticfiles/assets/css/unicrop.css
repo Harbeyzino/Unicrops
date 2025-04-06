@@ -1819,124 +1819,120 @@ responsive
 
 }
 
-.sign-tab {
-  display: flex;
-  gap: 10px;             
-  align-items: center;   
-  list-style: none;      
-  padding: 0;           
-  margin: 0;             
+
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  position: relative;
+  width: 36px;
+  font-size: 24px;
 }
 
-.sign-btn {
-  background-color: #ac1729;
-  padding: 0px;
-  border-radius: 50px;
-  color: #fff;
-  cursor: pointer;
-  display: none;
-}
-
-.sign-btn-full:hover {
-  background-color: #1a1313b9;
-  color: black;
-}
-
-.sign-btn-full{
-  background-color: #ac1729;
-  padding: 0px;
-  border-radius: 50px;
-  color: #fff;
-  cursor: pointer;
-}
-
-
-@media (max-width: 768px) {
-  .sign-btn {
-    background-color: #ac1729;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 18px;
-    padding-right: 18px;
-    border-radius: 50px;
-    display: inline-block;
-    margin-left: 110px;
-    margin-right: -60px;
-    margin-top: 14px;
-  }
-
-  .logo {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    right: 57%;
-    bottom: 15px;
-  }
-
-  .sign-btn a {
-    color: #fff;
-    font-size: 14px;
-    font-weight: 500;
-  }
-
-  .menu-trigger {
-   margin-right: -30px;
-   margin-top: -18px;
-  }
-
-  .main-nav .nav{
-    margin-top: 70px;
-  }
-
-  .avatar-img {
-    margin-left: -40px;
-    margin-right: -80px;
-    margin-bottom: -400px;
-    outline: 3px solid #ac1729;
-  }
-
-  .sign-btn-full:hover {
-    background-color: #1a1313b9;
-    color: black;
-  }
-  
-  .sign-btn-full{
-    background-color: #ac1729;
-    padding: 0px;
-    border-radius: 50px;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-}
-
-.avatar-img {
-  width: 40px;  
-  height: 40px; 
-  border-radius: 50%; 
-  object-fit: cover; 
-  cursor: pointer; 
-  transition: transform 0.2s ease-in-out; 
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  font-size: 0.75rem;
   position: absolute;
-  left: 100%;
-  top: 240%;
-  outline: 2px solid #ac1729;
-
-}
-
-
-.avatar-img:hover {
-  transform: scale(1.1);
-}
-
-
-.nav-item.dropdown .dropdown-menu {
   right: 0;
-  left: auto;
-  min-width: 150px;
-
+  font-family: sans-serif;
 }
 
-.menu-trigger {
-  display: none;
+.navbar-icon-top .navbar-nav .nav-link > .fa {
+  top: 3px;
+  line-height: 12px;
 }
+
+.navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
+  top: -10px;
+}
+
+@media (min-width: 576px) {
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-sm .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-md .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-lg .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link {
+    text-align: center;
+    display: table-cell;
+    height: 70px;
+    vertical-align: middle;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa {
+    display: block;
+    width: 48px;
+    margin: 2px auto 4px auto;
+    top: 0;
+    line-height: 24px;
+  }
+
+  .navbar-icon-top.navbar-expand-xl .navbar-nav .nav-link > .fa > .badge {
+    top: -7px;
+  }
+}
+

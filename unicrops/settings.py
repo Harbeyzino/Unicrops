@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    ''
 
     # Third-party apps
     'rest_framework',
@@ -77,6 +78,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'sweetify',
 ]
 
 AUTHENTICATION_BACKENDS = [

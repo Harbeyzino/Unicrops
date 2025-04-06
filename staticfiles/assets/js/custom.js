@@ -174,8 +174,8 @@
 	                "z-index": "9999",
 	                "padding-top": "50px",
 	                "box-shadow": "0px 4px 10px rgba(0, 0, 0, 0.1)",
-	                "overflow-y": "auto", // Allow scrolling inside the menu
-	                "max-height": "90vh" // Prevent blocking the whole screen
+	                "overflow-y": "auto",
+	                "max-height": "90vh",
 	            }).fadeIn(300);
 	        }
 	    });
@@ -190,7 +190,7 @@
 	});
 
 	
-
+ 
 	$(document).ready(function () {
 	    $(document).on("scroll", onScroll);
 	    

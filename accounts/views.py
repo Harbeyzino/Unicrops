@@ -8,6 +8,9 @@ from django.contrib import messages
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from django.utils.timezone import now
+from datetime import datetime
+
 
 # User Login
 def login_page(request):
@@ -100,3 +103,23 @@ class PrivacyPolicyView(TemplateView):
 def settings_view(request):
     """Render the settings page."""
     return render(request, 'accounts/settings.html')
+
+
+def adminHome(request):
+    # Determine the greeting based on the time of day
+    current_hour = datetime.now().hour
+    if current_hour < 12:
+        greeting = "Good Morning"
+        icon = "🌞"  # Sun icon
+    elif 12 <= current_hour < 18:
+        greeting = "Good Afternoon"
+        icon = "☀️"  # Bright sun icon
+    else:
+        greeting = "Good Evening"
+        icon = "🌙"  # Moon icon
+
+    # Pass greeting and icon to the template
+    return render(request, 'digiApp/admin-portal/adhome.html', {
+        'greeting': greeting,
+        'icon': icon,
+    })

@@ -1,0 +1,42 @@
+:root {
+    /* --bg-color: #ffffff;  */
+    --text-color: #000000; 
+    --hearder-color: #f8f9fa; 
+    --sidebar-color: #12467ac7; 
+}
+
+[data-bs-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --hearder-color: #1a1652;
+    --sidebar-color: #232323;
+}
+
+/* Global styles */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: var(--navbar-color);
+    transition: background-color 0.3s;
+}
+
+/* Sidebar styles */
+.sidebar {
+    background-color: var(--sidebar-color);
+    transition: background-color 0.3s;
+}
+
+/* Button group styles */
+.mode-switch .btn {
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.mode-switch .btn.text-body {
+    font-weight: bold;
+}
