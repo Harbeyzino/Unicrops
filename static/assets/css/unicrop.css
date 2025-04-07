@@ -1936,3 +1936,7 @@ responsive
   }
 }
 
+.navbar-spacing {
+  padding-left: 95px;
+  padding-right: 95px;
+}
