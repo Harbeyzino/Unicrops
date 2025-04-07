@@ -1940,3 +1940,16 @@ responsive
   padding-left: 95px;
   padding-right: 95px;
 }
+
+@media (max-width: 991px) {
+  .navbar-spacing {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .navbar-spacing {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}

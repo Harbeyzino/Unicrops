@@ -34,7 +34,7 @@
 
   <!-- Template Main CSS File -->
   <link href="{% static 'ad_assets/css/style.css' %}" rel="stylesheet">
-  <link href="{% static 'ad_assets/css/theme.css' %}" rel="stylesheet">
+  <!-- <link href="{% static 'ad_assets/css/theme.css' %}" rel="stylesheet"> -->
 
 
   <style>
@@ -100,7 +100,7 @@
   {% endif %}
 
       <!-- ======= Header ======= -->
-    <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: #e3f2fd;">
+    <header id="header" class="header fixed-top d-flex align-items-center" >
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="{% url 'home' %}" class="logo" >
@@ -271,30 +271,29 @@
         <li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="{% url 'profile' %}" data-bs-toggle="dropdown">
-            {% if user.profile.profile_picture %}
-                <img src="{{ user.profile.profile_picture.url }}" alt="Profile" class="rounded-circle">
-            {% else %}
-                <img src="{% static 'path/to/placeholder-image.jpg' %}" alt="Profile" class="rounded-circle">
-            {% endif %}
+            <img 
+                id="profile-picture" 
+                src="{% if user.profile.profile_picture %}{{ user.profile.profile_picture.url }}{% else %}{% static 'img/avatar.png' %}{% endif %}" 
+                alt="Profile" 
+                class="rounded-circle">
             <span class="d-none d-md-block dropdown-toggle ps-2">{{ user.username }}</span>
-        </a>
+          </a>
         
         
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6>{{ user.username }}</h6>
-              <!-- <span>Web Designer</span> -->
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
 
-            <li class="nav-item">
+            <li>
               <a class="nav-link collapsed" href="{% url 'profile' %}">
                   <i class="bi bi-person"></i>
                   <span>Profile</span>
               </a>
-          </li><!-- End Profile Page Nav -->
+            </li><!-- End Profile Page Nav -->
           
             <li>
               <hr class="dropdown-divider">
@@ -321,7 +320,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>
@@ -365,7 +364,7 @@
 
   <!-- Template Main JS File -->
   <script src="{% static 'ad_assets/js/main.js' %}"></script>
-  <script src="{% static 'ad_assets/js/theme.js' %}"></script>
+  <!-- <script src="{% static 'ad_assets/js/theme.js' %}"></script> -->
   
   <!-- JS to automatically fade out the messages after 3 seconds with shrinking effect -->
   <script>
