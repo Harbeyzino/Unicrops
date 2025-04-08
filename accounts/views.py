@@ -82,9 +82,23 @@ def confirmation_email_sent(request):
 
 @login_required
 def user_dashboard(request):
-    """Fetch or create user profile data for the dashboard"""
-    profile, created = Profile.objects.get_or_create(user=request.user)
-    return render(request, 'accounts/dashboard.html', {'profile': profile})
+    # Determine the greeting based on the time of day
+    current_hour = datetime.now().hour
+    if current_hour < 12:
+        greeting = "Good Morning"
+        icon = "🌞"  # Sun icon
+    elif 12 <= current_hour < 18:
+        greeting = "Good Afternoon"
+        icon = "☀️"  # Bright sun icon
+    else:
+        greeting = "Good Evening"
+        icon = "🌙"  # Moon icon
+
+    # Pass greeting and icon to the template
+    return render(request, 'accounts/dashboard.html', {
+        'greeting': greeting,
+        'icon': icon,
+    })
 
 @login_required
 def profile(request):
@@ -112,23 +126,3 @@ handler404 = error_404
 def settings_view(request):
     """Render the settings page."""
     return render(request, 'accounts/settings.html')
-
-
-def greetings(request):
-    # Determine the greeting based on the time of day
-    current_hour = datetime.now().hour
-    if current_hour < 12:
-        greeting = "Good Morning"
-        icon = "🌞"  # Sun icon
-    elif 12 <= current_hour < 18:
-        greeting = "Good Afternoon"
-        icon = "☀️"  # Bright sun icon
-    else:
-        greeting = "Good Evening"
-        icon = "🌙"  # Moon icon
-
-    # Pass greeting and icon to the template
-    return render(request, 'accounts/dashboard.html', {
-        'greeting': greeting,
-        'icon': icon,
-    })

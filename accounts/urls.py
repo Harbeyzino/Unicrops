@@ -13,6 +13,5 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('settings/', settings_view, name='settings'),
     path('pages-error-404/', views.error_404, name='pages-error-404'),
-    path('greetings/', views.greetings, name="user_dashboard")
 
 ]
