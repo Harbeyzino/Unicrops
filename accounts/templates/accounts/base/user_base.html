@@ -106,7 +106,7 @@
         <a href="{% url 'home' %}" class="logo" >
             <img src="{% static 'assets/images/logo1.png' %}" alt="Unicrops">
         </a>
-      <!-- <i class="bi bi-list toggle-sidebar-btn"></i> -->
+      <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
     <div class="search-bar">
@@ -289,9 +289,9 @@
             </li>
 
             <li>
-              <a class="nav-link collapsed" href="{% url 'profile' %}">
-                  <i class="bi bi-person"></i>
-                  <span>Profile</span>
+              <a class="dropdown-item d-flex align-items-center" href="{% url 'profile' %}">
+                <i class="bi bi-person"></i>
+                <span>My Profile</span>
               </a>
             </li><!-- End Profile Page Nav -->
           
@@ -335,10 +335,6 @@
   </header><!-- End Header -->
   
 
- 
-  
-
-  </aside><!-- End Sidebar-->
 
     <!-- Main Content Area -->
     <main id="main" class="main">
@@ -346,7 +342,7 @@
         <!-- Page-specific content goes here -->
         {% endblock %}
     </main>
-
+    
   
    
   
