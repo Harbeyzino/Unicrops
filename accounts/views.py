@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Profile
 from django.utils.timezone import now
 from datetime import datetime
+from django.conf.urls import handler404
 
 
 # User Login
@@ -99,13 +100,21 @@ def logout_view(request):
 class PrivacyPolicyView(TemplateView):
     template_name = 'accounts/privacy_policy.html'
 
+
+def error_404(request , exception):
+    """Render a custom 404 error page."""
+    return render(request, 'accounts/pages-error-404.html', status=404)
+
+handler404 = error_404
+
+
 @login_required
 def settings_view(request):
     """Render the settings page."""
     return render(request, 'accounts/settings.html')
 
 
-def adminHome(request):
+def greetings(request):
     # Determine the greeting based on the time of day
     current_hour = datetime.now().hour
     if current_hour < 12:
@@ -119,7 +128,7 @@ def adminHome(request):
         icon = "🌙"  # Moon icon
 
     # Pass greeting and icon to the template
-    return render(request, 'digiApp/admin-portal/adhome.html', {
+    return render(request, 'accounts/dashboard.html', {
         'greeting': greeting,
         'icon': icon,
     })

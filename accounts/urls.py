@@ -1,8 +1,6 @@
 from django.urls import path
 from . import views
 from .views import user_dashboard, settings_view
-from django.conf import settings
-from django.conf.urls.static import static 
 
 urlpatterns = [
     path('login/', views.login_page, name='login'),
@@ -14,7 +12,7 @@ urlpatterns = [
     path('privacy-policy/', views.PrivacyPolicyView.as_view(), name='privacy_policy'),
     path('profile/', views.profile, name='profile'),
     path('settings/', settings_view, name='settings'),
-]
+    path('pages-error-404/', views.error_404, name='pages-error-404'),
+    path('greetings/', views.greetings, name="user_dashboard")
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
