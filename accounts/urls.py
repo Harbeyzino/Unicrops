@@ -12,6 +12,5 @@ urlpatterns = [
     path('privacy-policy/', views.PrivacyPolicyView.as_view(), name='privacy_policy'),
     path('profile/', views.profile, name='profile'),
     path('settings/', settings_view, name='settings'),
-    path('pages-error-404/', views.error_404, name='pages-error-404'),
 
 ]

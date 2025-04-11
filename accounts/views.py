@@ -115,13 +115,14 @@ class PrivacyPolicyView(TemplateView):
     template_name = 'accounts/privacy_policy.html'
 
 
-def error_404(request , exception):
-    """Render a custom 404 error page."""
-    return render(request, 'accounts/pages-error-404.html', status=404)
+def custom_404(request, exception):
+    """Custom 404 error handler"""
+    return render(request, '404.html', status=404)
 
-handler404 = error_404
-
-
+def custom_500(request):
+    """Custom 500 error handler"""
+    return render(request, '500.html', status=500)
+    
 @login_required
 def settings_view(request):
     """Render the settings page."""

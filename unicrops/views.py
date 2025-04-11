@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from accounts.models import Profile  # Ensure the correct import
+from accounts.models import Profile
+from django.conf.urls import handler404, handler500
+
+handler404 = 'unicrops.views.custom_404'
+handler500 = 'unicrops.views.custom_500'
 
 
 def home_page(request):
