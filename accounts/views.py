@@ -11,7 +11,15 @@ from .models import Profile
 from django.utils.timezone import now
 from datetime import datetime
 from django.conf.urls import handler404
+import sweetify
 
+"""
+This module contains views for user authentication, including login, signup, email confirmation,
+profile management, and settings. It also includes custom error handling for 404 and 500 errors.
+
+"""
+
+# Security 
 
 # User Login
 def login_page(request):
@@ -80,6 +88,41 @@ def confirmation_email_sent(request):
     return render(request, "accounts/confirmation_email_sent.html")
 
 
+# Logout View
+def logout_view(request):
+    logout(request)
+    return redirect('home')
+
+class PrivacyPolicyView(TemplateView):
+    template_name = 'accounts/privacy_policy.html'
+
+
+
+"""
+        Custom Error Handling
+        This section includes custom error handlers for 404 and 500 errors.
+        These handlers render specific templates for each error.
+        
+"""
+
+
+def custom_404(request, exception):
+    """Custom 404 error handler"""
+    return render(request, '404.html', status=404)
+
+def custom_500(request):
+    """Custom 500 error handler"""
+    return render(request, '500.html', status=500)
+    
+
+
+"""
+        User Dashboard and Profile View
+        This section includes views for the user dashboard and profile page.
+
+"""
+
+# User Dashboard
 @login_required
 def user_dashboard(request):
     # Determine the greeting based on the time of day
@@ -100,29 +143,88 @@ def user_dashboard(request):
         'icon': icon,
     })
 
+# User Profile
 @login_required
 def profile(request):
-    """Fetch and pass profile data to the profile page"""
-    profile = Profile.objects.get(user=request.user)
-    return render(request, 'accounts/profile.html', {'profile': profile})
+    user = request.user
+    profile, created = Profile.objects.get_or_create(user=user)
 
-# Logout View
-def logout_view(request):
-    logout(request)
-    return redirect('home')
+    if request.method == "POST":
+        # Update profile fields
+        profile.full_name = request.POST.get("full_name", profile.full_name)
+        profile.about = request.POST.get("about", profile.about)
+        profile.company = request.POST.get("company", profile.company)
+        profile.role = request.POST.get("role", profile.role)
+        profile.country = request.POST.get("country", profile.country)
+        profile.address = request.POST.get("address", profile.address)
+        profile.phone_number = request.POST.get("phone_number", profile.phone_number)
 
-class PrivacyPolicyView(TemplateView):
-    template_name = 'accounts/privacy_policy.html'
+        # Update profile picture if uploaded
+        if request.FILES.get("profile_picture"):
+            profile.profile_picture = request.FILES["profile_picture"]
+
+        # Update user email
+        user.email = request.POST.get("email", user.email)
+        user.save()
+
+        # Save the profile
+        try:
+            profile.save()
+            messages.success(request, "Profile updated successfully!")
+        except Exception as e:
+            messages.error(request, f"Error saving profile: {e}")
+
+    return render(request, "accounts/profile.html", {"profile": profile})
 
 
-def custom_404(request, exception):
-    """Custom 404 error handler"""
-    return render(request, '404.html', status=404)
+# Edit Profile
+@login_required
+def edit_profile(request):
+    if request.method == "POST":
+        user = request.user
+        profile = user.profile
 
-def custom_500(request):
-    """Custom 500 error handler"""
-    return render(request, '500.html', status=500)
-    
+        # Update profile fields
+        profile.full_name = request.POST.get("full_name")
+        profile.about = request.POST.get("about")
+        profile.company = request.POST.get("company")
+        profile.role = request.POST.get("role")
+        profile.country = request.POST.get("country")
+        profile.address = request.POST.get("address")
+        profile.phone_number = request.POST.get("phone_number")
+
+        # Handle profile picture update
+        if "profile_picture" in request.FILES:
+            profile.profile_picture = request.FILES["profile_picture"]
+
+        try:
+            profile.save()
+            user.email = request.POST.get("email")
+            user.save()
+
+            # Add Sweetify success message
+            sweetify.success(
+                request,
+                "Profile Updated!",
+                text="Your profile was successfully updated.",
+                persistent="Ok",
+                timer=1000
+            )
+        except Exception as e:
+            # Add Sweetify error message
+            sweetify.error(
+                request,
+                "Update Failed",
+                text=f"An error occurred: {e}",
+                persistent="Retry",
+                timer=1000
+            )
+
+        return redirect("profile")
+
+    return render(request, "accounts/profile.html", {"user": request.user})
+
+
 @login_required
 def settings_view(request):
     """Render the settings page."""

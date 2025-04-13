@@ -88,7 +88,7 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 2
 
-LOGIN_REDIRECT_URL = '/'  # Redirect to the home page after login  # Redirect to the user dashboard after login
+LOGIN_REDIRECT_URL = '/user_dashboard/'  # Redirect to the user dashboard after login
 LOGOUT_REDIRECT_URL = 'home'
 
 MIDDLEWARE = [
@@ -290,9 +290,9 @@ SOCIALACCOUNT_PROVIDERS = {
             'profile',
             'email',
         ],
+        # Remove or modify the 'prompt' parameter to avoid user consent prompts
         'AUTH_PARAMS': {
             'access_type': 'online',
-            'prompt': 'consent',
         },
     },
     'facebook': {
@@ -322,12 +322,12 @@ SOCIALACCOUNT_PROVIDERS = {
 SECURE_SSL_REDIRECT = False
 SECURE_PROXY_SSL_HEADER = None
 
+from django.conf import settings
 
-ACCOUNT_LOGIN_METHOD = {'email'}
-ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_LOGIN_METHODS = {'email'}  # Use this instead of ACCOUNT_AUTHENTICATION_METHOD
 
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_REQUIRED = True
+settings.ACCOUNT_EMAIL_REQUIRED  = ['email*', 'username*', 'password1*', 'password2*']  # Use this instead of ACCOUNT_EMAIL_REQUIRED
+
 SOCIALACCOUNT_LOGIN_ON_GET = True
 SOCIALACCOUNT_AUTO_SIGNUP = True
 ACCOUNT_UNIQUE_EMAIL = True
