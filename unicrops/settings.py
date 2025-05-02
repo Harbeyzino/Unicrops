@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ''
 
     # Third-party apps
     'rest_framework',
@@ -61,7 +60,6 @@ INSTALLED_APPS = [
     'django_redis',
 
     # Custom modular apps
-
     'accounts',
     'products',
     'payments',
@@ -71,6 +69,7 @@ INSTALLED_APPS = [
     'admin_dashboard',
     'blog',
     'contact',
+    'unicrops',
 
     'django.contrib.sites',
     'allauth',

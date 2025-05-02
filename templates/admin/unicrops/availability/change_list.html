@@ -1,0 +1,42 @@
+{% extends "admin/change_list.html" %}
+{% load admin_urls %}
+
+{% block object-tools-items %}
+    {{ block.super }}
+    <li>
+        <a 
+            href="{{ generate_slots_url }}{{ object.id }}/" 
+            class="btn btn-highlight"
+            id="generate-slots-btn"
+        >
+            Generate Slots
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'admin:appointments_availability_changelist' %}?action=generate_availability" class="btn btn-primary">
+            Generate Availability
+        </a>
+    </li>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Example: AJAX handling for the button
+        document.getElementById('generate-slots-btn')?.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const response = await fetch(e.target.href);
+            const result = await response.json();
+            alert(result.status === 'success' 
+                ? `Generated ${result.slots_created} slots` 
+                : `Error: ${result.message}`);
+        });
+    });
+    </script>
+{% endblock %}
+
+{% block content %}
+<h1>Custom Template Loaded</h1>
+{{ block.super }}
+{% endblock %}

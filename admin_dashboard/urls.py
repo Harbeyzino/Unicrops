@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import DashboardView
+from .views import dashboard_view, admin_profile_view
 
 urlpatterns = [
-    path('', DashboardView.as_view(), name='ad_dashboard'),
+    path('', dashboard_view, name='dashboard'),
+    path('admin-profile/', admin_profile_view, name='admin_profile'),  # Updated URL for admin profile
 ]

@@ -1,0 +1,14 @@
+<p>Hello {{ appointment.name }},</p>
+<p>Your appointment has been successfully scheduled.</p>
+<p>Here are the details:</p>
+<ul>
+    <li><strong>Meeting with:</strong> {{ appointment.name }}</li>
+    <li><strong>Reason:</strong> {{ appointment.reason }}</li>
+    <li><strong>Contact Method:</strong> {{ appointment.contact_method }}</li>
+    <li><strong>Meeting Link:</strong> <a href="{{ appointment.meeting_link }}">Join the Meeting</a></li>
+</ul>
+
+<p>To add this event to your Google Calendar, click the link below:</p>
+<a href="{{ google_calendar_link }}" target="_blank">Add to Google Calendar</a>
+
+<p>Best regards,<br>Your Team</p>

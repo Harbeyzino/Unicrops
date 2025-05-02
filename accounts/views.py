@@ -12,6 +12,7 @@ from django.utils.timezone import now
 from datetime import datetime
 from django.conf.urls import handler404
 import sweetify
+from .decorator import unauthenticated_user, admin_only, allowed_users
 
 """
 This module contains views for user authentication, including login, signup, email confirmation,
@@ -22,6 +23,7 @@ profile management, and settings. It also includes custom error handling for 404
 # Security 
 
 # User Login
+@unauthenticated_user
 def login_page(request):
     if request.user.is_authenticated:
         return redirect('user_dashboard')
@@ -42,6 +44,7 @@ def login_page(request):
     return render(request, 'accounts/login.html')
 
 # User Signup
+@unauthenticated_user
 def signup_page(request):
     if request.method == 'POST':
         username = request.POST.get('username', '').strip()
@@ -73,6 +76,7 @@ def signup_page(request):
     return render(request, "accounts/signup.html")
 
 # Email Confirmation
+@unauthenticated_user
 def confirm_email(request, user_id):
     try:
         user = User.objects.get(id=user_id)
@@ -89,6 +93,7 @@ def confirmation_email_sent(request):
 
 
 # Logout View
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('home')
@@ -124,6 +129,7 @@ def custom_500(request):
 
 # User Dashboard
 @login_required
+@allowed_users(allowed_roles=['client', 'admin'])
 def user_dashboard(request):
     # Determine the greeting based on the time of day
     current_hour = datetime.now().hour
@@ -145,6 +151,7 @@ def user_dashboard(request):
 
 # User Profile
 @login_required
+@allowed_users(allowed_roles=['client', 'admin'])
 def profile(request):
     user = request.user
     profile, created = Profile.objects.get_or_create(user=user)
@@ -179,6 +186,7 @@ def profile(request):
 
 # Edit Profile
 @login_required
+@allowed_users(allowed_roles=['client', 'admin'])
 def edit_profile(request):
     if request.method == "POST":
         user = request.user
@@ -226,6 +234,11 @@ def edit_profile(request):
 
 
 @login_required
+@admin_only
 def settings_view(request):
     """Render the settings page."""
     return render(request, 'accounts/settings.html')
+
+def no_permission_view(request):
+    """Render the no permission page."""
+    return render(request, 'accounts/no_permission.html')

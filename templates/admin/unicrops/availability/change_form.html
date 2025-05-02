@@ -1,0 +1,59 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block content %}
+<div class="availability-header">
+    <h2>{{ original.date|date:"F j, Y" }}</h2>
+    <p class="time-range">
+        {{ original.start_time|time:"H:i" }} - {{ original.end_time|time:"H:i" }}
+        <span class="status-badge {% if original.is_available %}available{% else %}unavailable{% endif %}">
+            {% if original.is_available %}Available{% else %}Unavailable{% endif %}
+        </span>
+    </p>
+</div>
+
+{{ block.super }}
+
+<style>
+.availability-header {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+.time-range {
+    font-size: 1.2em;
+    color: #333;
+}
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-left: 10px;
+}
+.status-badge.available {
+    background: #d4edda;
+    color: #155724;
+}
+.status-badge.unavailable {
+    background: #f8d7da;
+    color: #721c24;
+}
+.time-slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+.time-slot {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+}
+.time-slot.booked {
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+</style>
+{% endblock %}

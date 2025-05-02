@@ -24,8 +24,10 @@ from .views import home_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page, name='home'),
-    path('accounts/', include('accounts.urls')),  # Include accounts app URLs
+    path('appointments/', include('appointments.urls')),
+    path('accounts/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
+    path('ad_dashboard/', include('admin_dashboard.urls')),  # Ensure this matches the app's URL configuration
 ]
 
 # Serve media & static files in development

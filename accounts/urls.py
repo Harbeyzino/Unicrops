@@ -14,9 +14,9 @@ urlpatterns = [
     path('privacy-policy/', views.PrivacyPolicyView.as_view(), name='privacy_policy'),
 
     # User Dashboard and Profile URLs
-    path('dashboard/', user_dashboard, name='user_dashboard'),
+    path('user_dashb/', user_dashboard, name='user_dashboard'),
     path('profile/', views.profile, name='profile'),
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('settings/', settings_view, name='settings'),
-
+    path('no_permission/', views.no_permission_view, name='no_permission'),
 ]

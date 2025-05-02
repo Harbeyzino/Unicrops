@@ -1,0 +1,359 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Book Appointment</title>
+
+  <link rel="stylesheet" href="{% static 'assets/css/book.css' %}">
+
+  <!-- favicon links -->
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets\images\apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets\images\favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets\images\favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'assets\images\site.webmanifest' %}">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- Flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <!-- Bootstrap 5 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  
+</head>
+
+<body class="bg-light">
+  <div class="
+   py-3 responsive-container">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+
+        <div class="card shadow rounded-4">
+          <div class="card-body p-5">
+            <h2 class="mb-4 text-center fw-bold">Book Your Appointment</h2>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-container">
+              <div class="progress-bar-step active" id="step1">
+                <div class="step-number"><span>1</span></div>
+                <div class="line"></div>
+              </div>
+              <div class="progress-bar-step inactive" id="step2">
+                <div class="step-number"><span>2</span></div>
+                <div class="line"></div>
+              </div>
+              <div class="progress-bar-step inactive" id="step3">
+                <div class="step-number"><span>3</span></div>
+              </div>
+            </div>
+
+            <form method="POST" action="" id="appointment-form">
+              {% csrf_token %}
+
+              <!-- Step 1 - Basic Info -->
+              <div class="step" id="step-1">
+                <div class="form-header mb-4">
+                  <h3 class="fw-bold text-primary">Personal Information</h3>
+                  <p class="text-muted">Please provide your details to schedule an appointment</p>
+                </div>
+              
+                <div class="row g-3">
+                  <!-- Name Field -->
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="text" id="name" name="name" class="form-control rounded-3" placeholder="John Doe" required>
+                      <label for="name" class="fw-semibold transparent-label">Full Name</label>
+                      <div class="form-icon">
+                        <i class="bi bi-person"></i>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- Email Field -->
+                  <div class="col-md-6">
+                    <div class="form-floating">
+                      <input type="email" id="email" name="email" class="form-control rounded-3" placeholder="name@example.com" required>
+                      <label for="email" class="fw-semibold transparent-label">Email Address</label>
+                      <div class="form-icon">
+                        <i class="bi bi-envelope"></i>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- Appointment Reason -->
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <select id="appointment_reason" name="reason" class="form-select rounded-3" required>
+                        <option value="" disabled selected></option>
+                        <option value="Branding and Consultancy">💼 Branding and Consultancy</option>
+                        <option value="Digital Marketing">📈 Digital Marketing</option>
+                        <option value="Social Media Management">📱 Social Media Management</option>
+                        <option value="Graphics Design">🎨 Graphics Design</option>
+                        <option value="Website and App Development">🌐 Website and App Development</option>
+                        <option value="Account Auditing">🧾 Account Auditing</option>
+                        <option value="Customer Service Optimization">📞 Customer Service Optimization</option>
+                        <option value="Human Resources Management">👥 Human Resources Management</option>
+                        <option value="Funding and Financial Advisory">💰 Funding and Financial Advisory</option>
+                        <option value="Other">➕ Other</option>
+                      </select>
+                      <label for="appointment_reason" class="fw-semibold transparent-label">Appointment Reason</label>
+                      <div class="form-icon">
+                        <i class="bi bi-card-list"></i>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- Custom Reason -->
+                  <div class="col-12" id="custom_reason_container" style="display: none;">
+                    <div class="form-floating">
+                      <input type="text" id="custom_reason" name="custom_reason" class="form-control rounded-3" placeholder=" ">
+                      <label for="custom_reason" class="fw-semibold transparent-label">Please Specify Your Reason</label>
+                      <div class="form-icon">
+                        <i class="bi bi-pencil"></i>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- Contact Method -->
+                  <div class="col-12">
+                    <label class="form-label fw-semibold">Preferred Contact Method</label>
+                    <div class="contact-methods d-flex flex-wrap gap-2">
+                      <div class="contact-method-option">
+                        <input type="radio" id="zoom" name="contact_method" value="zoom" class="btn-check" required>
+                        <label for="zoom" class="btn btn-outline-primary rounded-pill contact-method-btn">
+                          <i class="bi bi-camera-video me-2"></i>Zoom Meeting
+                        </label>
+                      </div>
+                      <div class="contact-method-option">
+                        <input type="radio" id="phone" name="contact_method" value="phone" class="btn-check">
+                        <label for="phone" class="btn btn-outline-primary rounded-pill contact-method-btn">
+                          <i class="bi bi-telephone me-2"></i>Phone Call
+                        </label>
+                      </div>
+                      <div class="contact-method-option">
+                        <input type="radio" id="whatsapp" name="contact_method" value="whatsapp" class="btn-check">
+                        <label for="whatsapp" class="btn btn-outline-primary rounded-pill contact-method-btn">
+                          <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- Phone Number Input -->
+                  <div class="col-12" id="phone_number_container" style="display: none;">
+                    <div class="form-floating">
+                      <div class="input-group">
+                        <span class="input-group-text bg-light">
+                          <img src="https://flagcdn.com/w40/ng.png" alt="Nigeria Flag" class="me-2" style="width: 20px; height: 15px;">
+                          +234
+                        </span>
+                        <input type="tel" id="phone_number" name="phone_number" class="form-control rounded-end-3" placeholder=" " required>
+                        <label for="phone_number" class="fw-semibold transparent-label">Phone Number</label>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- WhatsApp Number Input -->
+                  <div class="col-12" id="whatsapp_contact_container" style="display: none;">
+                    <div class="form-floating">
+                      <div class="input-group">
+                        <span class="input-group-text bg-light">
+                          <img src="https://flagcdn.com/w40/ng.png" alt="Nigeria Flag" class="me-2" style="width: 20px; height: 15px;">
+                          +234
+                        </span>
+                        <input type="tel" id="whatsapp_contact" name="whatsapp_contact" class="form-control rounded-end-3" placeholder=" " required>
+                        <label for="whatsapp_contact" class="fw-semibold transparent-label">WhatsApp Number</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Step 2 - Date Selection -->
+              <div class="step" id="step-2" style="display:none;">
+                <!-- Added User Summary Bar -->
+                <div class="user-summary-bar bg-light p-2 mb-3 rounded">
+                  <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <div class="user-info-pill">
+                      <i class="bi bi-person-fill text-primary me-1"></i>
+                      <small id="summary-name">John Doe</small>
+                    </div>
+                    <div class="user-info-pill">
+                      <i class="bi bi-envelope-fill text-primary me-1"></i>
+                      <small id="summary-email">john@example.com</small>
+                    </div>
+                    <div class="user-info-pill">
+                      <i class="bi bi-card-checklist text-primary me-1"></i>
+                      <small id="summary-reason">Branding</small>
+                    </div>
+                    <div class="user-info-pill">
+                      <span id="summary-contact-icon"><i class="bi bi-camera-video text-primary me-1"></i></span>
+                      <small id="summary-contact">Zoom</small>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- Original Calendar Content (Unchanged) -->
+                <div class="form-header mb-4">
+                  <h3 class="fw-bold text-primary">Schedule Your Appointment</h3>
+                  <p class="text-muted">Select your preferred date and time</p>
+                </div>
+
+                <!-- Desktop Layout (side-by-side) -->
+                <div class="d-none d-lg-block booking-container">
+                  <!-- Calendar Column (left side) -->
+                  <div class="calendar-column" id="calendarColumnDesktop">
+                    <div class="calendar-header">
+                      <div class="calendar-nav d-flex justify-content-between align-items-center mb-4">
+                        <button class="btn btn-outline-primary rounded-pill nav-btn" id="prev-btn-desktop">
+                          <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <h4 class="month-year-title mb-0" id="current-month-desktop">
+                          {{ current_month }} {{ current_year }}
+                        </h4>
+                        <button class="btn btn-outline-primary rounded-pill nav-btn" id="next-btn-desktop">
+                          <i class="bi bi-chevron-right"></i>
+                        </button>
+                      </div>
+                      <div id="calendar-body-desktop" class="calendar-body">
+                        {{ calendar|safe }}
+                      </div>
+                    </div>
+                  </div>
+                
+                  <!-- Time Column (right side) -->
+                  <div class="time-column" id="timeColumn">
+                    <div class="time-selection-card">
+                      <div class="card-header">
+                        <h5 class="mb-0">Available Times</h5>
+                        <div class="time-zone-badge">
+                          <i class="bi bi-clock"></i> WAT (UTC +1)
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="selected-date-display" id="selectedDateDesktop">
+                          <i class="bi bi-calendar"></i>
+                          <span>Select a date</span>
+                        </div>
+                        <div class="time-slots-container" id="timeSlotsDesktop">
+                          <div class="empty-state">
+                            <i class="bi bi-calendar-check"></i>
+                            <p>Please select a date to view available times</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="time_slot_id" id="selected-time-slot">
+
+                <!-- Mobile Layout (stacked) -->
+                <div class="d-block d-lg-none mobile-booking-container">
+                  <!-- Calendar View (visible initially) -->
+                  <div class="calendar-view-mobile" id="calendarViewMobile">
+                    <div class="calendar-header">
+                      <div class="calendar-nav d-flex justify-content-between align-items-center mb-3">
+                        <button class="btn btn-outline-primary rounded-pill nav-btn" id="prev-btn-mobile">
+                          <i class="bi bi-chevron-left"></i>
+                        </button>
+                        <button class="btn btn-outline-primary rounded-pill nav-btn" id="next-btn-mobile">
+                          <i class="bi bi-chevron-right"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div id="calendar-body-mobile" class="calendar-body">
+                      {{ calendar|safe }}
+                    </div>
+                  </div>
+                
+                  <!-- Time View (hidden initially) -->
+                  <div class="time-view-mobile" id="timeViewMobile" style="display: none;">
+                    <div class="time-selection-card">
+                      <button class="btn btn-back" id="backToCalendar">
+                        <i class="bi bi-chevron-left"></i> Back to calendar
+                      </button>
+                      <div class="card-header">
+                        <h5 class="mb-0">Available Times</h5>
+                        <div class="time-zone-badge">
+                          <i class="bi bi-clock"></i> WAT (UTC +1)
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="selected-date-display" id="selectedDateMobile">
+                          <i class="bi bi-calendar"></i>
+                          <span>No date selected</span>
+                        </div>
+                        <div class="time-slots-container" id="timeSlotsMobile">
+                          <div class="empty-state">
+                            <i class="bi bi-calendar-check"></i>
+                            <p>Please select a date to view available times</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Step 3 - Review Selection -->
+              <div class="step" id="step-3" style="display:none;">
+                <div class="mb-4">
+                  <h5 class="fw-bold">Review Your Appointment Details</h5>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Name:</label>
+                  <p id="review-name"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Email:</label>
+                  <p id="review-email"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Appointment Reason:</label>
+                  <p id="review-reason"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Preferred Contact Method:</label>
+                  <p id="review-contact-method"></p>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label fw-bold">Appointment Date:</label>
+                  <p id="review-date"></p>
+                </div>
+              </div>
+
+              <!-- Navigation buttons -->
+              <div class="d-flex justify-content-between mt-4">
+                <i class="bi bi-arrow-left-circle-fill" id="prevBtn" style="font-size: 2.5rem; display:none;" ></i>
+                <i class="bi bi-arrow-right-circle-fill" id="nextBtn" style="font-size: 2.5rem; "  onclick="goToStep2()"></i>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div> <!-- Show or hide the "Previous" button -->
+    </div>
+  </div>
+  <script>
+    // Initialize with real data
+    fetch('/api/available-time-slots/?date=2023-12-01')
+      .then(r => r.json())
+      .then(renderTimeSlots);
+    </script>
+<!-- Add a hidden input to store the selected date -->
+<!-- Add this to your form -->
+<input type="hidden" id="selected-time-slot" name="time_slot_id">
+
+</body>
+<link rel="stylesheet" href="{% static 'appointments/css/book.css' %}">
+<script src="{% static 'assets/js/book.js' %}"></script>
+</html>

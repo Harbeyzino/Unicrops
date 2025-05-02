@@ -1,0 +1,90 @@
+<!-- appointments/templates/appointments/summary.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Appointment Summary</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f7f9fc;
+      padding: 2rem;
+    }
+    .summary-container {
+      background: #fff;
+      max-width: 500px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .success-icon {
+      font-size: 3rem;
+      color: green;
+    }
+    .info-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .info-icon svg {
+      margin-right: 0.5rem;
+    }
+    .calendar-box {
+      background: #f0f8ff;
+      border: 1px solid #d0e6ff;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+    a.button-link {
+      display: inline-block;
+      margin-top: 1rem;
+      background: #007bff;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="summary-container">
+  <div class="success-icon">✅</div>
+  <h2>You are scheduled</h2>
+  <p>A calendar invitation has been sent to <strong>{{ appointment.email }}</strong></p>
+
+  <div class="info-icon">
+    🧑 <strong style="margin-left: 0.5rem;">{{ appointment.name }}</strong>
+  </div>
+
+  <div class="info-icon">
+    🕒 Duration: 30 mins
+  </div>
+
+  <div class="info-icon">
+    {% if appointment.contact_method == 'zoom' %}
+      📹 Zoom
+    {% elif appointment.contact_method == 'phone' %}
+      📞 Phone Call
+    {% elif appointment.contact_method == 'whatsapp' %}
+      💬 WhatsApp Call
+    {% endif %}
+  </div>
+
+  <div class="calendar-box">
+    <strong>{{ appointment.timeslot.availability.date|date:"l, F j, Y" }}</strong><br>
+    Time: {{ appointment.timeslot.time|time:"h:i A" }} WAT<br>
+    🌍 Timezone: {{ appointment.timezone }}
+  </div>
+
+  <a class="button-link" href="{{ appointment.meeting_link }}" target="_blank">Open Invitation Link</a>
+</div>
+
+</body>
+</html>
