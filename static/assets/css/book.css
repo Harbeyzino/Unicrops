@@ -158,7 +158,7 @@
 
   /* Adjust container width */
   .responsive-container {
-    max-width: 1000px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 30px;
     background-image: url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80");
@@ -170,25 +170,25 @@
     color: #fff;
     position: relative;
     overflow: hidden;
-    min-height: 500px; /* Ensure enough height for content */
+    min-height: 500px;
 }
 
 /* Overlay for better text readability */
 .responsive-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
 }
 
 /* Ensure content stays above overlay */
 .responsive-container > * {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 /* Improve text contrast */
@@ -198,28 +198,15 @@
 .responsive-container h4,
 .responsive-container h5,
 .responsive-container h6 {
-    color: #201f1f;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  color: #141313;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* Button styling that works on the background */
-.responsive-container .btn-primary {
-    background-color: rgba(13, 110, 253, 0.9);
-    border-color: rgba(255, 255, 255, 0.2);
-}
 
-.responsive-container .btn-outline-primary {
-    border-color: rgba(255, 255, 255, 0.5);
-    color: white;
-}
-
-.responsive-container .btn-outline-primary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
 
   @media (max-width: 768px) {
     .responsive-container {
-      max-width: 100%; /* Full width for mobile */
+      max-width: 150%; /* Full width for mobile */
       padding: 0 10px; /* Adjust padding for smaller screens */
     }
   }
@@ -394,13 +381,7 @@ to { opacity: 1; transform: translateY(0); }
 
 
 /* Form Container */
-#step-1 {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  }
-  
+
   /* Form Header */
   .form-header {
     border-bottom: 1px solid #eee;
@@ -546,13 +527,6 @@ to { opacity: 1; transform: translateY(0); }
 
 
 /* Step 2 Container */
-#step-2 {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  }
-  
   .form-header {
     border-bottom: 1px solid #eee;
     padding-bottom: 1rem;
@@ -662,6 +636,7 @@ to { opacity: 1; transform: translateY(0); }
     border-radius: 12px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -707,24 +682,59 @@ to { opacity: 1; transform: translateY(0); }
     color: #6c757d;
   }
   
+  @media (max-width: 768px) {
+    .time-selection-card .card-header {
+      padding: 1rem; 
+    }
   
+    .time-selection-card .card-header h5 {
+      font-size: 1rem; 
+    }
+  
+    .time-zone-badge {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+    }
+  
+    .selected-date-display {
+      padding: 0.75rem; 
+      font-size: 0.85rem; 
+    }
+  
+    .selected-date-display i {
+      font-size: 1rem; 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .time-selection-card .card-header {
+      padding: 0.75rem;
+    }
+  
+    .time-selection-card .card-header h5 {
+      font-size: 0.9rem; 
+    }
+  
+    .time-zone-badge {
+      font-size: 0.65rem; 
+      padding: 0.15rem 0.4rem; 
+    }
+  
+    .selected-date-display {
+      padding: 0.5rem; 
+      font-size: 0.75rem; 
+    }
+  
+    .selected-date-display i {
+      font-size: 0.85rem; 
+    }
+  }
   
   /* Mobile Styles */
   .mobile-booking-container {
     position: relative;
   }
   
-  .btn-back {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #6c757d;
-    background: none;
-    border: none;
-    padding: 0.5rem 0;
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
   
   /* Animations */
   .time-column {
@@ -819,13 +829,35 @@ to { opacity: 1; transform: translateY(0); }
 
 }
 
+/* Calendar Styling for Mobile View */
+@media (max-width: 768px) {
+    .calendar-container {
+        width: 100%;
+        padding: 0 0.5rem; /* Reduce padding for smaller screens */
+    }
 
+    .calendar-body table {
+        border-spacing: 4px; /* Reduce spacing between cells */
+    }
 
+    .calendar-body th, .calendar-body td {
+        font-size: 10px; /* Smaller font size for mobile */
+    }
 
+    .calendar-body td > div {
+        width: 30px; /* Smaller cell size */
+        height: 30px;
+    }
 
+    .calendar-nav .nav-btn {
+        visibility: hidden; /* Make navigation buttons invisible */
+    }
+}
 
-
-
+/* Change Month Text Color */
+.calendar-body th.month {
+    color: black; /* Change month text color to black */
+}
 
 /* ALL TIME-SLOT SELECTION CSS */
 
@@ -873,26 +905,27 @@ to { opacity: 1; transform: translateY(0); }
 /* Adjustments for mobile view */
 @media (max-width: 768px) {
   .time-slots-container {
-    max-height: 300px; /* Reduce height for smaller screens */
+    max-height: 268px;
+    width: 100%;
   }
 }
 
 /* Time Slot Styling */
 .time-slot {
-  background-color: #e3f2fd; /* Default blue background */
-  color: #0d47a1; /* Ensure default text color is not white */
-  border: 2px solid #2196f3;
-  display: inline-flex; /* Ensure time slots are displayed in a row */
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  border: 3px solid #2196f3;
+  display: block;
   justify-content: center;
   align-items: center;
-  padding: 12px 15px;
+  /* padding: 12px 15px; */
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 700;
   text-align: center;
-  min-width: 100px; /* Ensure consistent width */
+  /* min-width: 100px;  */
 }
 
 .time-slot.booked {
@@ -987,3 +1020,68 @@ to { opacity: 1; transform: translateY(0); }
 .selected-date-display span {
   font-weight: 500;
 }
+
+.btn-back {
+    width: 100%; /* Fit the container */
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d6efd; /* Blue background */
+    color: white;
+    border: none;
+    border-radius: 50px; /* Rounded edges */
+    font-size: 14px; /* Smaller font size */
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    gap: 5px; /* Space between icon and text */
+}
+
+.btn-back:hover {
+    background-color: #0b5ed7; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.btn-back i {
+    font-size: 16px; /* Adjust icon size */
+}
+
+.btn-back span {
+    font-size: 12px; 
+    font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    h2.text-center.fw-bold {
+        font-size: 25px; 
+    }
+
+    .form-header h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .calendar-body th.month {
+        display: block; /* Ensure the month is visible */
+        text-align: center; /* Center align the month */
+        font-size: 14px; /* Slightly larger font for better readability */
+        color: black; /* Ensure the text color is black */
+        margin-bottom: 10px; /* Add spacing below the month */
+    }
+
+    .calendar-nav .nav-btn {
+        visibility: hidden; /* Keep navigation buttons invisible */
+    }
+
+    .calendar-body th, .calendar-body td {
+        font-size: 10px; /* Smaller font size for mobile */
+    }
+
+    .calendar-body td > div {
+        width: 30px; /* Smaller cell size */
+        height: 30px;
+    }
+}
+

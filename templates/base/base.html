@@ -66,12 +66,12 @@
       <!-- Mobile Auth Buttons -->
       <div class="d-block d-lg-none">
         {% if user.is_authenticated %}
-          <a href="#" class="ms-3 sign-btn" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/abbeyzino51/30min'});return false;">
+          <a href="{% url 'book-now' %}" class="ms-3 sign-btn">
             <button type="button" class="btn btn-danger">Book now</button>
           </a>
         {% else %}
           <a href="{% url 'login' %}" class="ms-3 sign-btn">
-            <button type="button" class="btn btn-danger"></button>
+            <button type="button" class="btn btn-danger">Sign Up</button>
           </a>
         {% endif %}
       </div>

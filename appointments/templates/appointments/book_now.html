@@ -36,27 +36,29 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
 
-        <div class="card shadow rounded-4">
-          <div class="card-body p-5">
-            <h2 class="mb-4 text-center fw-bold">Book Your Appointment</h2>
-
-            <!-- Progress Bar -->
-            <div class="progress-bar-container">
-              <div class="progress-bar-step active" id="step1">
-                <div class="step-number"><span>1</span></div>
-                <div class="line"></div>
-              </div>
-              <div class="progress-bar-step inactive" id="step2">
-                <div class="step-number"><span>2</span></div>
-                <div class="line"></div>
-              </div>
-              <div class="progress-bar-step inactive" id="step3">
-                <div class="step-number"><span>3</span></div>
-              </div>
-            </div>
-
+      
             <form method="POST" action="" id="appointment-form">
               {% csrf_token %}
+
+
+              <div class="card shadow rounded-4">
+                <div class="card-body p-5">
+                  <!-- <h2 class="mb-4 text-center fw-bold">Book Your Appointment</h2> -->
+      
+                  <!-- Progress Bar -->
+                  <div class="progress-bar-container">
+                    <div class="progress-bar-step active" id="step1">
+                      <div class="step-number"><span>1</span></div>
+                      <div class="line"></div>
+                    </div>
+                    <div class="progress-bar-step inactive" id="step2">
+                      <div class="step-number"><span>2</span></div>
+                      <div class="line"></div>
+                    </div>
+                    <div class="progress-bar-step inactive" id="step3">
+                      <div class="step-number"><span>3</span></div>
+                    </div>
+                  </div>
 
               <!-- Step 1 - Basic Info -->
               <div class="step" id="step-1">
@@ -264,6 +266,9 @@
                         <button class="btn btn-outline-primary rounded-pill nav-btn" id="prev-btn-mobile">
                           <i class="bi bi-chevron-left"></i>
                         </button>
+                        <h4 class="month-year-title mb-0" id="current-month-desktop">
+                          {{ current_month }} {{ current_year }}
+                        </h4>
                         <button class="btn btn-outline-primary rounded-pill nav-btn" id="next-btn-mobile">
                           <i class="bi bi-chevron-right"></i>
                         </button>
@@ -277,8 +282,9 @@
                   <!-- Time View (hidden initially) -->
                   <div class="time-view-mobile" id="timeViewMobile" style="display: none;">
                     <div class="time-selection-card">
-                      <button class="btn btn-back" id="backToCalendar">
-                        <i class="bi bi-chevron-left"></i> Back to calendar
+                      <button class="btn btn-back btn-primary" id="backToCalendar">
+                        <i class="bi bi-arrow-left"></i>
+                        <span>Back to calendar</span>
                       </button>
                       <div class="card-header">
                         <h5 class="mb-0">Available Times</h5>
