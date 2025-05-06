@@ -44,7 +44,7 @@
         </div>
         <div class="col-lg-4 col-sm-4">
           <div class="right-icons">
-            <ul class="list-inline text-end mb-0">
+            <ul class="list-inline mb-0">
               <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
               <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
               <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
@@ -66,17 +66,17 @@
       <!-- Mobile Auth Buttons -->
       <div class="d-block d-lg-none">
         {% if user.is_authenticated %}
-          <a href="{% url 'book-now' %}" class="ms-3 sign-btn">
+          <a href="{% url 'book_appointment' %}" class="ms-3 sign-btn" style="font-weight: bold;">
             <button type="button" class="btn btn-danger">Book now</button>
           </a>
         {% else %}
           <a href="{% url 'login' %}" class="ms-3 sign-btn">
-            <button type="button" class="btn btn-danger">Sign Up</button>
+            <button type="button" class="btn btn-danger" style="font-weight: bold;">Sign Up</button>
           </a>
         {% endif %}
       </div>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-expanded="false" aria-controls="navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -92,9 +92,9 @@
           <a href="#apply" class="nav-item nav-link">About Us</a>
 
           <!-- Our Services Dropdown -->
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Our Services</a>
-            <div class="dropdown-menu">
+          <div class="nav-item">
+            <a href="#" class="nav-link">Our Services</a>
+            <!-- <div class="dropdown-menu">
               <a href="#" class="dropdown-item">Branding and Consultancy</a>
               <a href="#" class="dropdown-item">Digital Marketing</a>
               <a href="#" class="dropdown-item">Social Media Management</a>
@@ -104,7 +104,7 @@
               <a href="#" class="dropdown-item">Customer Service Optimization</a>
               <a href="#" class="dropdown-item">Human Resources Management</a>
               <a href="#" class="dropdown-item">Funding and Financial Advisory</a>
-            </div>
+            </div> -->
           </div>
 
           <!-- AI Solutions Dropdown -->
@@ -129,14 +129,17 @@
         <!-- Right Auth Buttons -->
         <div class="navbar-nav ms-auto">
           {% if not user.is_authenticated %}
-            <div class="d-flex align-items-center">
-              <a href="{% url 'login' %}" class="ms-3 sign-btn">
-                <button type="button" class="btn btn-outline-danger">Sign In</button>
-              </a>
-              <a href="{% url 'signup' %}" class="ms-3 sign-btn">
-                <button type="button" class="btn btn-danger">Sign Up</button>
-              </a>
-            </div>
+          <div class="d-flex w-100 mt-3">
+            <a href="{% url 'login' %}" class="sign-btn flex-grow-1">
+              <button type="button" class="btn btn-outline-danger w-100" style="border-width: 2px; font-weight: bold;">Sign In</button>
+            </a>
+            <a href="{% url 'signup' %}" class="ms-3 sign-btn flex-grow-1">
+              <button type="button" class="btn btn-danger w-100" style="border-width: 2px; font-weight: bold;">Sign Up</button>
+            </a>
+          </div>
+            <a href="{% url 'book_appointment' %}" class="sign-btn3">
+              <button type="button" class="btn btn-outline-danger" style="width: 100%; padding: 8px 16px; border-width: 2px; font-weight: bold;">Book now</button>
+            </a>
           {% else %}
             <a href="{% url 'logout' %}" class="ms-3 sign-btn">
               <button type="button" class="btn btn-danger">Sign Out</button>
@@ -158,81 +161,106 @@
     </body>
 
 
-    <!-- Footer -->
-    <footer class="text-center text-lg-start text-white" style="background-color: #413e8d;">
-      <!-- Grid container -->
-      <div class="container p-4">
-        <!-- Section: Social media -->
-        <section class="mb-4">
-          <p>Connect with us on social media:</p>
-          <a class="btn btn-outline-light btn-floating m-1 text-white" href="#!" role="button">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a class="btn btn-outline-light btn-floating m-1 text-white" href="#!" role="button">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a class="btn btn-outline-light btn-floating m-1 text-white" href="#!" role="button">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a class="btn btn-outline-light btn-floating m-1 text-white" href="#!" role="button">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </section>
-        <!-- Section: Social media -->
-
-        <!-- Section: About -->
-        <section class="mb-4">
-          <h5 class="text-uppercase">About Unicrops</h5>
-          <p>
-            Unicrops Business Solution is your trusted partner in providing innovative business solutions, 
-            including branding, digital marketing, and AI-driven tools to optimize your operations.
-          </p>
-        </section>
-        <!-- Section: About -->
-
-        <!-- Section: Links -->
-        <section class="">
-          <div class="row">
-            <!-- Services -->
-            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Our Services</h5>
-              <ul class="list-unstyled mb-0">
-                <li><a class="text-white" href="#!">Branding and Consultancy</a></li>
-                <li><a class="text-white" href="#!">Digital Marketing</a></li>
-                <li><a class="text-white" href="#!">AI Solutions</a></li>
-                <li><a class="text-white" href="#!">Website Development</a></li>
-              </ul>
-            </div>
-            <!-- Quick Links -->
-            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Quick Links</h5>
-              <ul class="list-unstyled mb-0">
-                <li><a class="text-white" href="#!">Home</a></li>
-                <li><a class="text-white" href="#!">About Us</a></li>
-                <li><a class="text-white" href="#!">Contact Us</a></li>
-                <li><a class="text-white" href="#!">FAQs</a></li>
-              </ul>
-            </div>
-            <!-- Contact -->
-            <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
-              <h5 class="text-uppercase">Contact Us</h5>
-              <p><i class="fas fa-map-marker-alt"></i> 123 Business Street, City, Country</p>
-              <p><i class="fas fa-envelope"></i> support@unicrops.com</p>
-              <p><i class="fas fa-phone"></i> +123 456 7890</p>
-            </div>
+    <footer class="text-center text-lg-start text-white position-relative">
+      <!-- Background Image with Overlay -->
+      <div class="footer-background">
+          <div class="background-overlay"></div>
+      </div>
+  
+      <!-- Grid Container -->
+      <div class="container p-4 position-relative z-index-1">
+          <!-- Section: Social Media -->
+          <section class="mb-5 text-center">
+              <h4 class="text-uppercase mb-4">Connect With Us</h4>
+              <div class="d-flex justify-content-center gap-3">
+                  <a class="btn btn-icon btn-lg btn-light rounded-circle" href="#!" role="button">
+                      <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a class="btn btn-icon btn-lg btn-light rounded-circle" href="#!" role="button">
+                      <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a class="btn btn-icon btn-lg btn-light rounded-circle" href="#!" role="button">
+                      <i class="fab fa-twitter"></i>
+                  </a>
+                  <a class="btn btn-icon btn-lg btn-light rounded-circle" href="#!" role="button">
+                      <i class="fab fa-instagram"></i>
+                  </a>
+              </div>
+          </section>
+  
+          <!-- Section: Content -->
+          <div class="row g-5">
+              <!-- Company Info -->
+              <div class="col-lg-4 mb-4">
+                  <div class="footer-brand mb-4">
+                      <img src="{% static 'assets/images/logo-white.png' %}" alt="Unicrops" height="40">
+                  </div>
+                  <p class="small opacity-75">
+                      Transforming businesses through innovative digital solutions and strategic consultancy services.
+                  </p>
+                  <div class="trust-badges mt-4">
+                      <img src="{% static 'assets/images/pci-compliant.png' %}" alt="PCI Compliant" height="40">
+                      <img src="{% static 'assets/images/google-partner.png' %}" alt="Google Partner" height="40">
+                  </div>
+              </div>
+  
+              <!-- Quick Links -->
+              <div class="col-lg-2 col-md-4 mb-4">
+                  <h5 class="text-uppercase mb-4">Solutions</h5>
+                  <ul class="list-unstyled">
+                      <li class="mb-2"><a href="#!" class="text-white text-decoration-none small hover-underline">Digital Transformation</a></li>
+                      <li class="mb-2"><a href="#!" class="text-white text-decoration-none small hover-underline">AI Automation</a></li>
+                      <li class="mb-2"><a href="#!" class="text-white text-decoration-none small hover-underline">Cloud Services</a></li>
+                      <li class="mb-2"><a href="#!" class="text-white text-decoration-none small hover-underline">Enterprise Security</a></li>
+                  </ul>
+              </div>
+  
+              <!-- Resources -->
+              <div class="col-lg-2 col-md-4 mb-4">
+                  <h5 class="text-uppercase mb-4">Resources</h5>
+                  <ul class="list-unstyled">
+                      <li class="mb-2"><a href="#!" class="text-white text-decoration-none small hover-underline">Case Studies</a></li>
+                      <li class="mb-2"><a href="#!" class="text-white text-decoration-none small hover-underline">White Papers</a></li>
+                      <li class="mb-2"><a href="#!" class="text-white text-decoration-none small hover-underline">Webinars</a></li>
+                      <li class="mb-2"><a href="#!" class="text-white text-decoration-none small hover-underline">Blog</a></li>
+                  </ul>
+              </div>
+  
+              <!-- Contact -->
+              <div class="col-lg-4 col-md-4 mb-4">
+                  <h5 class="text-uppercase mb-4">Get In Touch</h5>
+                  <ul class="list-unstyled contact-info">
+                      <li class="mb-3">
+                          <i class="fas fa-map-marker-alt me-2"></i>
+                          <span class="small">Lorem ipsum dolor sit amet <br>consectetur adipisicing elit.</span>
+                      </li>
+                      <li class="mb-3">
+                          <i class="fas fa-phone-alt me-2"></i>
+                          <a href="tel:+1234567890" class="text-white text-decoration-none small">+1 (234) 567-890</a>
+                      </li>
+                      <li class="mb-3">
+                          <i class="fas fa-envelope me-2"></i>
+                          <a href="mailto:info@unicrops.com" class="text-white text-decoration-none small">info@unicorps.com</a>
+                      </li>
+                  </ul>
+              </div>
           </div>
-        </section>
-        <!-- Section: Links -->
       </div>
-      <!-- Grid container -->
-
+  
       <!-- Copyright -->
-      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2023 Unicrops Business Solution. All Rights Reserved.
+      <div class="footer-copyright text-center py-3 border-top border-light opacity-50">
+          <div class="container">
+              <div class="d-lg-flex justify-content-between align-items-center">
+                  <div class="mb-2 mb-lg-0 small">© 2023 Unicrops. All rights reserved.</div>
+                  <div class="legal-links">
+                      <a href="#!" class="text-white text-decoration-none small me-3">Privacy Policy</a>
+                      <a href="#!" class="text-white text-decoration-none small me-3">Terms of Service</a>
+                      <a href="#!" class="text-white text-decoration-none small">Cookie Policy</a>
+                  </div>
+              </div>
+          </div>
       </div>
-      <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
+  </footer>
 
       <!-- Scripts -->
       <!-- Bootstrap core JavaScript -->
@@ -317,3 +345,4 @@
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 
     </footer>
+</html>
