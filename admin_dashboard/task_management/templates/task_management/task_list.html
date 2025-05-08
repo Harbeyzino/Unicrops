@@ -7,9 +7,9 @@
 <p>Timeframe: {{ task.time_value }} {{ task.get_time_unit_display }}</p>
 <p>Status: {% if task.is_completed %}Completed{% else %}In Progress{% endif %}</p>
 
-<div class="progress-bar">
+<!-- <div class="progress-bar">
     <div class="progress" style="width: {{ overall_progress }}%">{{ overall_progress|floatformat:1 }}%</div>
-</div>
+</div> -->
 
 <h3>Subtasks</h3>
 <ul>
