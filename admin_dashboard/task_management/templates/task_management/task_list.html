@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{{ task.title }}</h2>
+<p>Project: {{ task.project.name }}</p>
+<p>Assigned to: {{ task.assigned_to.get_full_name|default:"Unassigned" }}</p>
+<p>Timeframe: {{ task.time_value }} {{ task.get_time_unit_display }}</p>
+<p>Status: {% if task.is_completed %}Completed{% else %}In Progress{% endif %}</p>
+
+<div class="progress-bar">
+    <div class="progress" style="width: {{ overall_progress }}%">{{ overall_progress|floatformat:1 }}%</div>
+</div>
+
+<h3>Subtasks</h3>
+<ul>
+    {% for subtask in subtasks %}
+    <li>
+        {{ subtask.title }} - {% if subtask.is_completed %}✓{% else %}✗{% endif %}
+    </li>
+    {% empty %}
+    <li>No subtasks</li>
+    {% endfor %}
+</ul>
+
+<h3>Progress Updates</h3>
+{% for update in progress_updates %}
+<div class="progress-update">
+    <p><strong>{{ update.get_status_display }}</strong> - {{ update.created_at }}</p>
+    <p>{{ update.notes }}</p>
+    {% if update.proof %}
+    <a href="{{ update.proof.url }}" target="_blank">View Proof</a>
+    {% endif %}
+    
+    <h4>Comments</h4>
+    {% for comment in update.comments.all %}
+    <div class="comment">
+        <p><strong>{{ comment.user.get_full_name }}</strong> - {{ comment.created_at }}</p>
+        <p>{{ comment.text }}</p>
+    </div>
+    {% endfor %}
+    
+    <form method="post" action="{% url 'add_comment' update.id %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Add Comment</button>
+    </form>
+</div>
+{% endfor %}
+
+<a href="{% url 'update_progress' task.id %}">Update Progress</a>
+{% endblock %}

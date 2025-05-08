@@ -1,0 +1,44 @@
+{% extends "admin_portal/base/ad_base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="page-header">
+      <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white me-2">
+          <i class="mdi mdi-bell"></i>
+        </span> All Notifications
+      </h3>
+    </div>
+    
+    <div class="row">
+      <div class="col-12 grid-margin">
+        <div class="card">
+          <div class="card-body">
+            <div class="list-wrapper">
+              <ul class="d-flex flex-column-reverse notification-list">
+                {% for notification in notifications %}
+                <li class="{% if not notification.read %}unread{% endif %}">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-{% cycle 'success' 'warning' 'info' 'danger' %}">
+                      <i class="mdi mdi-{% cycle 'bell' 'alert' 'email' 'account' %}"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject">{{ notification.message }}</h6>
+                    <p class="text-muted mb-0">{{ notification.created_at|timesince }} ago</p>
+                  </div>
+                </li>
+                {% empty %}
+                <li class="text-center py-4">No notifications found</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

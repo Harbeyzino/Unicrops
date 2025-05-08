@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+import os
+
+
+
 
 class AdminProfile(models.Model):
     """
@@ -63,3 +69,48 @@ class Appointment(models.Model):
         return f"Appointment for {self.name} on {self.timeslot.availability.date} at {self.timeslot.time}"
 
 
+
+from django.db import models
+from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+import os
+
+def admin_profile_picture_path(instance, filename):
+    """Returns the upload path for admin profile pictures"""
+    ext = filename.split('.')[-1]
+    return f'profiles/admin_{instance.user.username}/profile.{ext}'
+
+# Custom storage for admin profile pictures
+admin_profile_storage = FileSystemStorage(
+    location=os.path.join('media', 'profiles'),
+    base_url='/media/profiles/'
+)
+
+class AdminProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='admin_profile')
+    profile_picture = models.ImageField(
+        storage=admin_profile_storage,
+        upload_to=admin_profile_picture_path,
+        default='admin_default.png',
+        blank=True
+    )
+    phone = models.CharField(max_length=20, blank=True)
+    department = models.CharField(max_length=100, blank=True)
+    
+    def get_profile_picture(self):
+        """Returns URL of profile picture with fallback to static default"""
+        if self.profile_picture and os.path.exists(self.profile_picture.path):
+            return self.profile_picture.url
+        return '/static/profiles/admin_default.png'
+
+    class Meta:
+        verbose_name = 'Admin Profile'
+        verbose_name_plural = 'Admin Profiles'
+
+@receiver(post_save, sender=User)
+def create_admin_profile(sender, instance, created, **kwargs):
+    """Create admin profile when a staff user is created"""
+    if created and instance.is_staff:
+        AdminProfile.objects.get_or_create(user=instance)

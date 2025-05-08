@@ -27,7 +27,7 @@ urlpatterns = [
     path('appointments/', include('appointments.urls')),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('allauth.urls')),
-    path('ad_dashboard/', include('admin_dashboard.urls')),  # Ensure this matches the app's URL configuration
+    path('ad_dashboard/', include('admin_dashboard.urls')),
 ]
 
 # Serve media & static files in development

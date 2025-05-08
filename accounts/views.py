@@ -13,6 +13,9 @@ from datetime import datetime
 from django.conf.urls import handler404
 import sweetify
 from .decorator import unauthenticated_user, admin_only, allowed_users
+from django.shortcuts import get_object_or_404
+from .utils import create_notification
+
 
 """
 This module contains views for user authentication, including login, signup, email confirmation,
@@ -149,6 +152,21 @@ def user_dashboard(request):
         'icon': icon,
     })
 
+    unread_notifications = Notification.objects.filter(
+        user=request.user,
+        is_read=False
+    )
+    recent_notifications = Notification.objects.filter(
+        user=request.user
+    ).order_by('-created_at')[:5]
+    
+    context = {
+        'unread_notifications': unread_notifications,
+        'recent_notifications': recent_notifications,
+        # ... other context
+    }
+    return render(request, 'dashboard.html', context)
+
 # User Profile
 @login_required
 @allowed_users(allowed_roles=['client', 'admin'])
@@ -242,3 +260,26 @@ def settings_view(request):
 def no_permission_view(request):
     """Render the no permission page."""
     return render(request, 'accounts/no_permission.html')
+
+
+
+def task_update(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    # Your task update logic here...
+    
+    # Send notification
+    create_notification(
+        user=request.user,
+        notification_type='TASK',
+        title=f'Task Update: {task.title}',
+        message=f'Your task "{task.title}" has been updated',
+        related_id=task.id
+    )
+
+
+@login_required
+def all_notifications(request):
+    notifications = Notification.objects.filter(user=request.user).order_by('-created_at')
+    # Mark all as read when viewing
+    Notification.objects.filter(user=request.user, is_read=False).update(is_read=True)
+    return render(request, 'notifications/all.html', {'notifications': notifications})

@@ -236,27 +236,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Different from STATICFILE
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# File storage (remove Cloudinary if you don't want to use it)
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-##################  Media Hosting/ Cloudinary ####################
 
-import cloudinary
-
-cloudinary.config(
-    cloud_name=config('CLOUD_NAME'),
-    api_key=config('API_KEY'),
-    api_secret=config('API_SECRET')
-)
-
-# Set Cloudinary as the default storage for media files
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-# Set the media URL
-MEDIA_URL = f'https://res.cloudinary.com/{config("CLOUD_NAME")}/image/upload/'
 
 
 ################### Email ########################

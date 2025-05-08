@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 import os
+from django.db import models
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 def user_avatar_upload_path(instance, filename):
     # Define the upload path for user avatars
@@ -27,3 +31,26 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
+
+
+
+class Notification(models.Model):
+    NOTIFICATION_TYPES = (
+        ('TASK', 'Task Update'),
+        ('ORDER', 'Order Update'),
+        ('SYSTEM', 'System Notification'),
+    )
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    notification_type = models.CharField(max_length=10, choices=NOTIFICATION_TYPES)
+    title = models.CharField(max_length=100)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    related_id = models.PositiveIntegerField(null=True, blank=True)  # For task/order ID
+    
+    class Meta:
+        ordering = ['-created_at']
+        
+    def __str__(self):
+        return f"{self.get_notification_type_display()} - {self.user.username}"

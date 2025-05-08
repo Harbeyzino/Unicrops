@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 from .views import user_dashboard, settings_view
+from .views import all_notifications
 
 urlpatterns = [
     # User Authentication URLs
@@ -19,4 +20,5 @@ urlpatterns = [
     path('profile/edit/', views.edit_profile, name='edit_profile'),
     path('settings/', settings_view, name='settings'),
     path('no_permission/', views.no_permission_view, name='no_permission'),
+    path('notifications/', all_notifications, name='all_notifications'),
 ]
