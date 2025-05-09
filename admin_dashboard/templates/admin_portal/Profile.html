@@ -8,7 +8,7 @@
             <div class="card shadow">
                 <div class="card-body text-center">
                     <div class="position-relative mb-3">
-                        <img src="{% if profile.profile_picture and profile.profile_picture.url %}{{ profile.profile_picture.url }}{% else %}{% static 'profiles/admin_default.png' %}{% endif %}" 
+                        <img src="{% if request.user.admin_profile.profile_picture and request.user.admin_profile.profile_picture.url %}{{ request.user.admin_profile.profile_picture.url }}{% else %}{% static 'profiles/admin_default.png' %}{% endif %}" 
                              class="rounded-circle border" 
                              width="150" 
                              height="150"

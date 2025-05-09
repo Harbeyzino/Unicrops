@@ -83,7 +83,7 @@
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
               <div class="nav-profile-img">
-                <img src="{% if profile.profile_picture and profile.profile_picture.url %}{{ profile.profile_picture.url }}{% else %}{% static 'profiles/admin_default.png' %}{% endif %}" alt="profile">
+                <img src="{% if request.user.admin_profile.profile_picture and request.user.admin_profile.profile_picture.url %}{{ request.user.admin_profile.profile_picture.url }}{% else %}{% static 'profiles/admin_default.png' %}{% endif %}" alt="profile">
                 <span class="availability-status online"></span>
               </div>
               <div class="nav-profile-text">
@@ -208,7 +208,7 @@
           <li class="nav-item nav-profile">
             <a href="#" class="nav-link">
               <div class="nav-profile-image">
-                <img src="{% if profile.profile_picture and profile.profile_picture.url %}{{ profile.profile_picture.url }}{% else %}{% static 'profiles/admin_default.png' %}{% endif %}" alt="profile" />
+                <img src="{% if request.user.admin_profile.profile_picture and request.user.admin_profile.profile_picture.url %}{{ request.user.admin_profile.profile_picture.url }}{% else %}{% static 'profiles/admin_default.png' %}{% endif %}" alt="profile" />
                 <span class="login-status online"></span>
                 <!--change to offline or busy as needed-->
               </div>
